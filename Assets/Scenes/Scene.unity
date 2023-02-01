@@ -309,6 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970159191}
+  - component: {fileID: 970159192}
   m_Layer: 0
   m_Name: World Manager
   m_TagString: Untagged
@@ -331,6 +332,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &970159192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970159190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414fbc4f13aabd44485e99dd4c063e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid_location: {fileID: 327337271525248467, guid: 9e357138e1708734ebccc5d6077fb379, type: 3}
+  grid_x: 5
+  grid_y: 5
 --- !u!1 &1484931094
 GameObject:
   m_ObjectHideFlags: 0
