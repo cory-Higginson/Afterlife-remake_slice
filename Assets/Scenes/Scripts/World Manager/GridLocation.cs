@@ -49,7 +49,7 @@ public class GridLocation : MonoBehaviour
         if (timer >= max_timer && grid_data.stored_building == null)
         {
             Vector3 spawn_point = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
-            grid_data.stored_building = Instantiate(building, spawn_point, Quaternion.identity);
+            grid_data.stored_building = Instantiate(building, spawn_point, Quaternion.identity, this.transform);
         }
     }
 }
