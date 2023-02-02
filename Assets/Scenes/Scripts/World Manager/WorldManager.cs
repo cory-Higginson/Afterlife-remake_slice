@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -72,5 +74,60 @@ public class WorldManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private int getIndex(Vector2 position)
+    {
+        return (int)position.x + (int)position.y * grid_x;
+    }
+
+    private bool withinRange(Vector2 position)
+    {
+        if (position.x > grid_x - 1 || position.x < 0 ||
+            position.y > grid_y - 1 || position.y < 0) return false;
+        return true;
+    }
+
+    private void pathfinding(GameObject gate, GameObject building, int plane)
+    {
+        Vector2 start = gate.GetComponent<GridLocation>().grid_data.position;
+
+        Vector2 end = building.GetComponent<GridLocation>().grid_data.position;
+
+
+    }
+
+    private void AStar()
+    {
+
+    }
+
+    private GameObject[] getNeighbours(Vector2 start, int plane)
+    {
+        GameObject[] neighbours = new GameObject[4];
+
+        Vector2 [] directions = new Vector2[4]
+        {
+            new Vector2(1, 0),
+            new Vector2(-1, 0),
+            new Vector2(0, 1),
+            new Vector2(0, -1)
+        };
+
+        foreach (Vector2 dir in directions)
+        {
+            Vector2 current = new Vector2(start.x + dir.x, start.y + dir.y);
+
+            if (!withinRange(current)) continue;
+
+            int tile_index = getIndex(current);
+
+            if (planes[0][tile_index].GetComponent<GridLocation>().grid_data.tile_type 
+                != TileType.Transport) continue;
+
+            neighbours.Append(planes[plane][tile_index]);
+        }
+
+        return neighbours;
     }
 }
