@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ToggleWindow : MonoBehaviour
 {
-    [SerializeField] private Button button;
+    private Button button;
     [SerializeField] private GameObject window;
     
-    [SerializeField] private bool windowEnabled;
+    private bool windowEnabled;
 
 
     // Start is called before the first frame update
@@ -35,6 +35,7 @@ public class ToggleWindow : MonoBehaviour
         {
             window.SetActive(true);
             windowEnabled = true;
+            window.transform.SetAsLastSibling();
         }
     }
 }
