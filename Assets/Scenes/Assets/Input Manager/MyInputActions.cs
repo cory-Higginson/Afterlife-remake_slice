@@ -569,7 +569,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b918ed03-3254-424c-9706-ba3e8e7be12d"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
