@@ -47,6 +47,12 @@ public class WorldManager : MonoBehaviour
         planes[0][9].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
         planes[0][10].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
         planes[0][20].GetComponent<GridLocation>().grid_data.tile_type = TileType.Yellow;
+
+        planes[0][15].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
+        //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
+
+        Debug.Log(planes[0][20].GetComponent<GridLocation>().grid_data.position);
+        Debug.Log(planes[0][9].GetComponent<GridLocation>().grid_data.position);
     }
 
     // Update is called once per frame
@@ -74,6 +80,11 @@ public class WorldManager : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown("a"))
+        {
+            Debug.Log("Result " + pathfinding(planes[0][20], planes[0][9], 0));
+        }
     }
 
     private int getIndex(Vector2 position)
@@ -88,44 +99,83 @@ public class WorldManager : MonoBehaviour
         return true;
     }
 
-    private void pathfinding(GameObject gate, GameObject building, int plane)
+    private bool pathfinding(GameObject gate, GameObject building, int plane)
     {
         Vector2 start = gate.GetComponent<GridLocation>().grid_data.position;
 
         Vector2 end = building.GetComponent<GridLocation>().grid_data.position;
 
+        if (start == end) { return true; }
+        //Debug.Log("Astar " + AStar(start, end, plane));
+        return AStar(start, end, plane);
+    }
+
+    private bool AStar(Vector2 start, Vector2 end, int plane)
+    {
+        List<Vector2> closed_list = new List<Vector2>();
+
+        Queue<Vector2> open_list = new Queue<Vector2>();
+        open_list.Enqueue(start);
+
+        while (open_list.Count > 0)
+        {
+            Vector2 current = open_list.Dequeue();
+            if (current == end) { return true; }
+
+            foreach (Vector2 neighbour in getNeighbours(current, end, plane))
+            {
+                if (closed_list.Contains(current)) { continue; }
+
+                if (neighbour == end) { return true; }
+
+                open_list.Enqueue(neighbour);
+            }
+            closed_list.Add(current);
+        }
+
+        if (closed_list.Contains(end)) { return true; }
+
+        return false;
 
     }
 
-    private void AStar()
+    private List<Vector2> getNeighbours(Vector2 start, Vector2 end, int plane)
     {
+        Debug.Log("checking_for_neighbours");
+        List<Vector2> neighbours = new List<Vector2>();
 
-    }
-
-    private GameObject[] getNeighbours(Vector2 start, int plane)
-    {
-        GameObject[] neighbours = new GameObject[4];
-
-        Vector2 [] directions = new Vector2[4]
+        Vector2 [] directions = new Vector2[8]
         {
             new Vector2(1, 0),
             new Vector2(-1, 0),
             new Vector2(0, 1),
-            new Vector2(0, -1)
+            new Vector2(0, -1),
+            new Vector2(1, 1),
+            new Vector2(1, -1),
+            new Vector2(-1, 1),
+            new Vector2(-1, -1)
         };
 
         foreach (Vector2 dir in directions)
         {
             Vector2 current = new Vector2(start.x + dir.x, start.y + dir.y);
-
             if (!withinRange(current)) continue;
-
+            
             int tile_index = getIndex(current);
+
+            if (current == end)
+            { neighbours.Clear(); Debug.Log("OVER " + current); neighbours.Add(current); return neighbours; }
 
             if (planes[0][tile_index].GetComponent<GridLocation>().grid_data.tile_type 
                 != TileType.Transport) continue;
+            neighbours.Add(current);
+        }
+        Debug.Log(neighbours);
+        Debug.Log(neighbours[0]);
+        foreach (Vector2 neighbour in neighbours)
+        { 
 
-            neighbours.Append(planes[plane][tile_index]);
+            Debug.Log("AFTER " + neighbour);
         }
 
         return neighbours;

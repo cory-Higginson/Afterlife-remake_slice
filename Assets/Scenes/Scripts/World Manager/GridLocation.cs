@@ -36,6 +36,9 @@ public class GridLocation : MonoBehaviour
             case TileType.Red:
                 tile_mat.color = Color.red;
                 break;
+            case TileType.Transport:
+                tile_mat.color = Color.black;
+                break;
             default:
                 tile_mat.color = Color.white;
                 break;
