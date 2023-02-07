@@ -21,6 +21,7 @@ public class CameraManager : MonoBehaviour
     {
         // TO BE REMOVED
         Cursor.visible = true;
+        // TO BE REMOVED BECAUSE EM'S STUFF DOES IT AND DON'T WANT TO DO TWICE. 
         
         cam = GetComponent<Camera>();
         cam_rig = transform.parent.gameObject;
@@ -29,12 +30,15 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        // Subscribing necessary functions to InputAction delegates.
         InputManager.Instance.my_input_actions.AfterLifeActions.ToggleTopDownView.started += toggleTopDownView;
-        InputManager.Instance.my_input_actions.AfterLifeActions.CenterANDZoomIn.started += centerIn;
-        InputManager.Instance.my_input_actions.AfterLifeActions.CenterANDZoomOut.started += centerOut;
+        InputManager.Instance.my_input_actions.AfterLifeActions.CenterANDZoomIn.started += centreIn;
+        InputManager.Instance.my_input_actions.AfterLifeActions.CenterANDZoomOut.started += centreOut;
         InputManager.Instance.my_input_actions.AfterLifeActions.JumpViewToHeaven.started += jumpToHeaven;
         InputManager.Instance.my_input_actions.AfterLifeActions.JumpViewToHell.started += jumpToHell;
+        InputManager.Instance.my_input_actions.AfterLifeActions.CentreViewToCursor.started += centreToMouseInputActionFriendly;
 
+        // Store references to the InputActions that's state needs to be used in an update function.
         move_input = InputManager.Instance.my_input_actions.AfterLifeActions.MoveView;
         zoom_input = InputManager.Instance.my_input_actions.AfterLifeActions.Zoom;
     }
@@ -80,19 +84,15 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void centerIn(InputAction.CallbackContext context)
+    private void centreIn(InputAction.CallbackContext context)
     {
-        Vector3 cursor_world_pos = cam.ScreenToWorldPoint(Input.mousePosition);
-        cam_rig.transform.position = new Vector3(cursor_world_pos.x, cursor_world_pos.y, cam_rig.transform.position.z);
-        
+        centreViewToMousePos();
         ZoomView(shift_click_zoom_step);
     }
 
-    private void centerOut(InputAction.CallbackContext context)
+    private void centreOut(InputAction.CallbackContext context)
     {
-        Vector3 cursor_world_pos = cam.ScreenToWorldPoint(Input.mousePosition);
-        cam_rig.transform.position = new Vector3(cursor_world_pos.x, cursor_world_pos.y, cam_rig.transform.position.z);
-        
+        centreViewToMousePos();
         ZoomView(-shift_click_zoom_step);
     }
 
@@ -104,5 +104,37 @@ public class CameraManager : MonoBehaviour
     private void jumpToHeaven(InputAction.CallbackContext context)
     {
         // get position of heaven from Game Manager and set cam_rig position on x & y to it, z to a comfortable distance.
+    }
+
+    public void toggleHell()
+    {
+        // Toggles using XOR assignment.
+        cam.cullingMask ^= 1 << LayerMask.NameToLayer("Hell");
+    }
+
+    public void toggleHeaven(InputAction.CallbackContext context)
+    {
+        cam.cullingMask ^= 1 << LayerMask.NameToLayer("Heaven");
+    }
+
+    public void toggleGridTiles()
+    {
+        cam.cullingMask ^= 1 << LayerMask.NameToLayer("GridTiles");
+    }
+
+    public void KarmaStructures()
+    {
+        cam.cullingMask ^= 1 << LayerMask.NameToLayer("KarmaStructures");
+    }
+
+    private void centreViewToMousePos()
+    {
+        Vector3 cursor_world_pos = cam.ScreenToWorldPoint(Input.mousePosition);
+        cam_rig.transform.position = new Vector3(cursor_world_pos.x, cursor_world_pos.y, cam_rig.transform.position.z);
+    }
+
+    private void centreToMouseInputActionFriendly(InputAction.CallbackContext context)
+    {
+        centreViewToMousePos();   
     }
 }

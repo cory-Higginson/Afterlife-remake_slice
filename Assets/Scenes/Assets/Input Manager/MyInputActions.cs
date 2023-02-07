@@ -426,7 +426,16 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""CenterANDZoomOut"",
                     ""type"": ""Button"",
-                    ""id"": ""0533e764-5370-4d5e-8be8-3873ffdaba24"",
+                    ""id"": ""1553b178-ccbf-4d60-a4f2-21712c809218"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CentreViewToCursor"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7c99452-c5d6-4e93-8718-4b359980067f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1085,7 +1094,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""One Modifier"",
-                    ""id"": ""4f2d81ad-304c-44d8-970c-3c5bda9ea347"",
+                    ""id"": ""e6495dd2-2057-418e-a0a1-273d00a46c9c"",
                     ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1096,7 +1105,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""modifier"",
-                    ""id"": ""e1e02482-a552-4dd5-a54d-6d1602e60e4a"",
+                    ""id"": ""500f5bb8-8ef9-4855-8330-f4ac8983080b"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1107,7 +1116,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""binding"",
-                    ""id"": ""989f8acd-ccdc-4589-b75c-7dabe01fcc42"",
+                    ""id"": ""850ef1cb-660d-48a5-9a9d-f114f94e79bf"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1115,6 +1124,17 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""CenterANDZoomOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8167c46b-bd55-41b5-b28c-10ebb7beb7e0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CentreViewToCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1168,6 +1188,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         m_AfterLifeActions_JumpViewToHell = m_AfterLifeActions.FindAction("JumpViewToHell", throwIfNotFound: true);
         m_AfterLifeActions_CenterANDZoomIn = m_AfterLifeActions.FindAction("CenterANDZoomIn", throwIfNotFound: true);
         m_AfterLifeActions_CenterANDZoomOut = m_AfterLifeActions.FindAction("CenterANDZoomOut", throwIfNotFound: true);
+        m_AfterLifeActions_CentreViewToCursor = m_AfterLifeActions.FindAction("CentreViewToCursor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1272,6 +1293,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_AfterLifeActions_JumpViewToHell;
     private readonly InputAction m_AfterLifeActions_CenterANDZoomIn;
     private readonly InputAction m_AfterLifeActions_CenterANDZoomOut;
+    private readonly InputAction m_AfterLifeActions_CentreViewToCursor;
     public struct AfterLifeActionsActions
     {
         private @MyInputActions m_Wrapper;
@@ -1321,6 +1343,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         public InputAction @JumpViewToHell => m_Wrapper.m_AfterLifeActions_JumpViewToHell;
         public InputAction @CenterANDZoomIn => m_Wrapper.m_AfterLifeActions_CenterANDZoomIn;
         public InputAction @CenterANDZoomOut => m_Wrapper.m_AfterLifeActions_CenterANDZoomOut;
+        public InputAction @CentreViewToCursor => m_Wrapper.m_AfterLifeActions_CentreViewToCursor;
         public InputActionMap Get() { return m_Wrapper.m_AfterLifeActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1465,6 +1488,9 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 @CenterANDZoomOut.started -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCenterANDZoomOut;
                 @CenterANDZoomOut.performed -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCenterANDZoomOut;
                 @CenterANDZoomOut.canceled -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCenterANDZoomOut;
+                @CentreViewToCursor.started -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
+                @CentreViewToCursor.performed -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
+                @CentreViewToCursor.canceled -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
             }
             m_Wrapper.m_AfterLifeActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1604,6 +1630,9 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 @CenterANDZoomOut.started += instance.OnCenterANDZoomOut;
                 @CenterANDZoomOut.performed += instance.OnCenterANDZoomOut;
                 @CenterANDZoomOut.canceled += instance.OnCenterANDZoomOut;
+                @CentreViewToCursor.started += instance.OnCentreViewToCursor;
+                @CentreViewToCursor.performed += instance.OnCentreViewToCursor;
+                @CentreViewToCursor.canceled += instance.OnCentreViewToCursor;
             }
         }
     }
@@ -1655,5 +1684,6 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         void OnJumpViewToHell(InputAction.CallbackContext context);
         void OnCenterANDZoomIn(InputAction.CallbackContext context);
         void OnCenterANDZoomOut(InputAction.CallbackContext context);
+        void OnCentreViewToCursor(InputAction.CallbackContext context);
     }
 }

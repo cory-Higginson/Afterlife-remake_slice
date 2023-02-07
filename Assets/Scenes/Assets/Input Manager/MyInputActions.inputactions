@@ -404,7 +404,16 @@
                 {
                     "name": "CenterANDZoomOut",
                     "type": "Button",
-                    "id": "0533e764-5370-4d5e-8be8-3873ffdaba24",
+                    "id": "1553b178-ccbf-4d60-a4f2-21712c809218",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CentreViewToCursor",
+                    "type": "Button",
+                    "id": "d7c99452-c5d6-4e93-8718-4b359980067f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1063,7 +1072,7 @@
                 },
                 {
                     "name": "One Modifier",
-                    "id": "4f2d81ad-304c-44d8-970c-3c5bda9ea347",
+                    "id": "e6495dd2-2057-418e-a0a1-273d00a46c9c",
                     "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
@@ -1074,7 +1083,7 @@
                 },
                 {
                     "name": "modifier",
-                    "id": "e1e02482-a552-4dd5-a54d-6d1602e60e4a",
+                    "id": "500f5bb8-8ef9-4855-8330-f4ac8983080b",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
@@ -1085,7 +1094,7 @@
                 },
                 {
                     "name": "binding",
-                    "id": "989f8acd-ccdc-4589-b75c-7dabe01fcc42",
+                    "id": "850ef1cb-660d-48a5-9a9d-f114f94e79bf",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -1093,6 +1102,17 @@
                     "action": "CenterANDZoomOut",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8167c46b-bd55-41b5-b28c-10ebb7beb7e0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CentreViewToCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
