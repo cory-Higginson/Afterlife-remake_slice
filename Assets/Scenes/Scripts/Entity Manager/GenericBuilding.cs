@@ -1,25 +1,29 @@
-﻿
+﻿//using System;
 
-public class GenericBuilding
+using System;
+using UnityEngine;
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public class GenericBuilding : MonoBehaviour
 {
-    public int[] Placeable; // list of all placeable layers
+    public int[] placeable;         // list of all placeable layers
 
-    public string Name; // name
-    public uint Cost; // cost of building
-    public Capacity CapacityInfo; // capacity struct
-    public int CurrentCapacity; // total used
+    [SerializeField]private string buildName = "Generic name";             // name
+    public uint efficiency = 100;         // Efficiency rating
+    public uint cost = 30;               // cost of building
+    private Capacity capacityInfo;  // capacity struct
     
-    public int Vibe; // good bad vibes
-    public string Description; // cool info
-    public bool Connected; // attached to road?
+    
+    public string description = "this building is decades old";      // cool info
 
-    public bool Locked;
-    public int Tax;
+    private Stats stats;            //Stats
+
+    private void Awake()
+    {
+        stats = gameObject.AddComponent<Stats>();
+        capacityInfo = gameObject.AddComponent<Capacity>();
+        
+    }
 };
-
-public class TierBuilding : GenericBuilding
-{
-    public string TierName; // Tier name
-    public GenericBuilding NextUpgrade; // next upgrade ref
-    public int UpgradeCost; // cost to upgrade
-}

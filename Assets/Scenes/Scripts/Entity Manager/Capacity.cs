@@ -1,31 +1,11 @@
-using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 
 
-
-public struct EMBO
+public class Capacity : MonoBehaviour
 {
-    private bool afterlife;         // belief in afterlife?
-    private bool Hroute;            // 
-
-
-}
-public struct SOUL
-{
-    private int ID;
-    public Material face;
-    public bool Reincarnate;
-    public string life;
-}
-
-
-
-
-public struct Capacity
-{
-    public int MaximumCapacity;
+    [SerializeField] private int MaximumCapacity; //UNCHANGEABLE
     public int CurrentCapacity;
-    public SOUL[] TemporaryCapacity;
-    public SOUL[] PermanentCapacity;
+    [SerializeField] private List<SOUL> TemporaryCapacity;
+    [SerializeField] private List<SOUL> PermanentCapacity;
 };
