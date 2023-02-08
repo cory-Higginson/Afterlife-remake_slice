@@ -34,7 +34,7 @@ public class WorldManager : MonoBehaviour
             {
                 for (int k = 0; k < grid_x; k++)
                 {
-                    Vector3 spawn_location = new Vector3(k, i * 3, j);
+                    Vector3 spawn_location = new Vector3(k, i * 5, j);
                     planes[i][j * grid_x + k] = Instantiate(grid_location, spawn_location, Quaternion.identity, this.transform);
                     planes[i][j * grid_x + k].GetComponent<GridLocation>().grid_data =
                         new GridData(TileType.None, new Vector2(k, j));
