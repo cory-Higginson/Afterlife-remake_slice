@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     public float move_speed = 1;
     public float zoom_sensitivity = 1;
-    public float shift_click_zoom_step = 5.0f;
+    public float shift_click_zoom_step = 20.0f;
 
     private bool top_down_view = false;
     private float cam_down_tilt;
@@ -80,7 +80,9 @@ public class CameraManager : MonoBehaviour
     {
         if (zoom_step != 0)
         {
-            cam_rig.transform.position += zoom_step * zoom_sensitivity * cam.transform.forward;
+            //cam_rig.transform.position += zoom_step * zoom_sensitivity * cam.transform.forward;
+            // Above line is more appropriate for a perspective camera and has no zoom effect on an orthographic camera. 
+            cam.orthographicSize += zoom_sensitivity * zoom_step;
         }
     }
 
@@ -130,7 +132,15 @@ public class CameraManager : MonoBehaviour
     private void centreViewToMousePos()
     {
         Vector3 cursor_world_pos = cam.ScreenToWorldPoint(Input.mousePosition);
-        cam_rig.transform.position = new Vector3(cursor_world_pos.x, cursor_world_pos.y, cam_rig.transform.position.z);
+
+        if (top_down_view)
+        {
+            cam_rig.transform.position = new Vector3(cursor_world_pos.x, cam_rig.transform.position.y, cursor_world_pos.z);
+        }
+        else
+        {
+            cam_rig.transform.position = new Vector3(cursor_world_pos.x, cursor_world_pos.y, cam_rig.transform.position.z);
+        }
     }
 
     private void centreToMouseInputActionFriendly(InputAction.CallbackContext context)

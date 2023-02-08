@@ -1,18 +1,28 @@
+ using Unity.VisualScripting;
  using UnityEngine;
 
- public class InputManager : MonoBehaviour
+ public class InputManager : Singleton<InputManager>
  {
+     /*
      private static InputManager instance;
-     
      public static InputManager Instance
      {
-         get { return instance;}
+         get
+         {
+             if (instance.IsUnityNull())
+             {
+                 Debug.Log("Game manager is null");
+             }
+             return instance;
+         }
      }
-
+     */
+     
      public MyInputActions my_input_actions;
 
-     private void Awake()
+     protected override void Awake()
      {
+         /*
          if (instance != null && instance != this)
          {
              Destroy(instance.gameObject);
@@ -21,7 +31,9 @@
          {
              instance = this;
          }
+         */
          
+         base.Awake();
          my_input_actions = new MyInputActions();
      }
 
@@ -29,7 +41,6 @@
      {
          my_input_actions.Enable();
          my_input_actions.AfterLifeActions.Enable();
-         my_input_actions.AfterLifeActions.MoveView.Enable();
      }
 
      private void OnDisable()
