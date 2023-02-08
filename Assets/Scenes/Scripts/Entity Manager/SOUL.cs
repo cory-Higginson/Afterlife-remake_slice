@@ -6,4 +6,5 @@ public struct SOUL
     public Material face;
     public bool Reincarnate;
     public string life;
+    public Direction direction;
 }

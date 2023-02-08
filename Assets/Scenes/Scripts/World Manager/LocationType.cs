@@ -13,9 +13,10 @@ public enum TileType
         None,
         Rock,
         Liquid,
-        Transport,
+        Road,
         Blue,
         Red,
         Green,
-        Yellow
+        Yellow,
+        Gate
     };

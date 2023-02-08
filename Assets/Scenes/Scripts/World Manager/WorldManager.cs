@@ -48,11 +48,12 @@ public class WorldManager : MonoBehaviour
         planes[0][10].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
         planes[0][20].GetComponent<GridLocation>().grid_data.tile_type = TileType.Yellow;
 
-        planes[0][15].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
-        //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
+        planes[0][13].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        planes[0][18].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        planes[0][6].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        planes[0][12].GetComponent<GridLocation>().grid_data.tile_type = TileType.Gate;
 
-        Debug.Log(planes[0][20].GetComponent<GridLocation>().grid_data.position);
-        Debug.Log(planes[0][9].GetComponent<GridLocation>().grid_data.position);
+        //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
     }
 
     // Update is called once per frame
@@ -83,7 +84,7 @@ public class WorldManager : MonoBehaviour
 
         if (Input.GetKeyDown("a"))
         {
-            Debug.Log("Result " + pathfinding(planes[0][20], planes[0][9], 0));
+            var test = check_cardinal(planes[0][12], TileType.Road, 0);
         }
     }
 
@@ -166,8 +167,8 @@ public class WorldManager : MonoBehaviour
             if (current == end)
             { neighbours.Clear(); Debug.Log("OVER " + current); neighbours.Add(current); return neighbours; }
 
-            if (planes[0][tile_index].GetComponent<GridLocation>().grid_data.tile_type 
-                != TileType.Transport) continue;
+            if (planes[plane][tile_index].GetComponent<GridLocation>().grid_data.tile_type 
+                != TileType.Road) continue;
             neighbours.Add(current);
         }
         Debug.Log(neighbours);
@@ -179,5 +180,52 @@ public class WorldManager : MonoBehaviour
         }
 
         return neighbours;
+    }
+
+    private List<Direction> check_cardinal(GameObject obj, TileType checking_for, int plane)
+    {
+        // Check the cardinal directions of a GameObject for a specific tile
+        // Will be used to check if buildings are connected to roads, ect
+
+        Vector2 start = obj.GetComponent<GridLocation>().grid_data.position;
+
+        List<Direction> is_connected = new List<Direction>();
+
+        Vector2[] directions = new Vector2[4]
+        {
+            new Vector2(1, 0),
+            new Vector2(-1, 0),
+            new Vector2(0, 1),
+            new Vector2(0, -1)
+        };
+
+        foreach (Vector2 dir in directions)
+        {
+            Vector2 current = new Vector2(start.x + dir.x, start.y + dir.y);
+
+            if (!withinRange(current)) continue;
+
+            if (planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.tile_type
+                == checking_for)
+            {
+                switch (dir)
+                {
+                    case Vector2 v when v.Equals(Vector2.right):
+                        is_connected.Add(Direction.East);
+                        break;
+                    case Vector2 v when v.Equals(Vector2.left):
+                        is_connected.Add(Direction.West);
+                        break;
+                    case Vector2 v when v.Equals(Vector2.up):
+                        is_connected.Add(Direction.North);
+                        break;
+                    case Vector2 v when v.Equals(Vector2.down):
+                        is_connected.Add(Direction.South);
+                        break;
+                }
+            }
+        }
+
+        return is_connected;
     }
 }

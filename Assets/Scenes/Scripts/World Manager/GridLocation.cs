@@ -6,7 +6,9 @@ public class GridLocation : MonoBehaviour
 {
     public GridData grid_data;
 
-    public GameObject building;
+    public GameObject generic_building;
+    public GameObject road;
+    public GameObject gate;
 
     private float timer = 0;
     private float max_timer = 5;
@@ -36,14 +38,18 @@ public class GridLocation : MonoBehaviour
             case TileType.Red:
                 tile_mat.color = Color.red;
                 break;
-            case TileType.Transport:
+            case TileType.Road:
                 tile_mat.color = Color.black;
+                break;
+            case TileType.Gate:
+                tile_mat.color = Color.grey;
                 break;
             default:
                 tile_mat.color = Color.white;
                 break;
         }
 
+        // TileType.Blue || grid_data.tile_type == TileType.Green || grid_data.tile_type == TileType.Yellow || grid_data.tile_type == TileType.Red
         if (grid_data.tile_type != TileType.None)
         {
             timer += Time.deltaTime;
@@ -52,7 +58,21 @@ public class GridLocation : MonoBehaviour
         if (timer >= max_timer && grid_data.stored_building == null)
         {
             Vector3 spawn_point = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
-            grid_data.stored_building = Instantiate(building, spawn_point, Quaternion.identity, this.transform);
+
+            switch (grid_data.tile_type)
+            {
+                case TileType.Road:
+                    grid_data.stored_building = Instantiate(road, spawn_point, Quaternion.identity, this.transform);
+                    break;
+                case TileType.Gate:
+                    grid_data.stored_building = Instantiate(gate, spawn_point, Quaternion.identity, this.transform);
+                    break;
+                default:
+                    grid_data.stored_building = Instantiate(generic_building, spawn_point, Quaternion.identity, this.transform);
+                    break;
+            }
+
+            
         }
     }
 }
