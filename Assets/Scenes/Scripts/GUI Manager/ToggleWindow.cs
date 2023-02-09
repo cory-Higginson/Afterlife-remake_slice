@@ -26,13 +26,11 @@ public class ToggleWindow : MonoBehaviour
         }
         
         CSString = FindObjectOfType<ChangeTopSectionValues>();
-        
-        window.SetActive(false);
     }
 
     void TaskOnClick()
     {
-        if (window.activeSelf)
+        if (window.activeInHierarchy)
         {
             window.SetActive(false);
         }
