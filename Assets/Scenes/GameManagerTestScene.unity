@@ -184,11 +184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735721809597680803, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4735721809597680803, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -75
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4735721809597680803, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
       propertyPath: m_LocalRotation.w
@@ -222,6 +222,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: move_speed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: zoom_in_max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: zoom_out_max
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: y_offset_on_snap
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: zoom_sensitivity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: max_dist_from_earth_x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: max_dist_from_earth_y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920677, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: shift_click_zoom_step
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4735721810011920678, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9910183
@@ -233,6 +265,14 @@ PrefabInstance:
     - target: {fileID: 4735721810011920678, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 15.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920679, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: near clip plane
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735721810011920679, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}
+      propertyPath: orthographic size
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a3026527a8a83a4fa78ed778a884634, type: 3}

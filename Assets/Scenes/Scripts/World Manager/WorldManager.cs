@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WorldManager : Singleton<WorldManager>
 {
@@ -18,6 +19,8 @@ public class WorldManager : Singleton<WorldManager>
     // Start is called before the first frame update
     void Start()
     {
+        InputManager.Instance.my_input_actions.AfterLifeActions.RotateView.started += rotateView;
+        
         for (int i = 0; i < num_of_planes; i++)
         {
             planes[i] = new GameObject[grid_x * grid_y];
@@ -71,6 +74,7 @@ public class WorldManager : Singleton<WorldManager>
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown("]"))
         {
             Debug.Log("works?");
@@ -93,12 +97,39 @@ public class WorldManager : Singleton<WorldManager>
                 }
             }
         }
+        */
 
         if (Input.GetKeyDown("a"))
         {
             var test = check_cardinal(planes[0][12], TileType.Road, 0);
 
             //var temp = check_cardinal(SOUL, TileType.Road, 0);
+        }
+    }
+
+    private void rotateView(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Single>() == 1)
+        {
+            Debug.Log("works?");
+            foreach (GameObject[] plane in planes)
+            {
+                foreach (GameObject tile in plane)
+                {
+                    tile.transform.RotateAround(center_point, Vector3.up, 90);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("works?");
+            foreach (GameObject[] plane in planes)
+            {
+                foreach (GameObject tile in plane)
+                {
+                    tile.transform.RotateAround(center_point, Vector3.up, -90);
+                }
+            }
         }
     }
 
@@ -281,7 +312,5 @@ public class WorldManager : Singleton<WorldManager>
                 planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.connected = true;
             }
         }
-
-        
     }
 }

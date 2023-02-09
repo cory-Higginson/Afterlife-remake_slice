@@ -35,8 +35,6 @@
          
          base.Awake();
          my_input_actions = new MyInputActions();
-
-         Debug.Log("created instance");
      }
 
      private void OnEnable()

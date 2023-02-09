@@ -16,7 +16,8 @@ public class CameraManager : MonoBehaviour
 
     private bool top_down_view = false;
     private float cam_down_tilt;
-    private Vector3 last_pos_before_snap;
+    private Vector3 last_pos_before_top_down;
+    private float zoom_before_top_down;
 
     private Camera cam;
     private GameObject cam_rig;
@@ -25,10 +26,6 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        // TO BE REMOVED
-        Cursor.visible = true;
-        // TO BE REMOVED BECAUSE EM'S STUFF DOES IT AND DON'T WANT TO DO TWICE. 
-        
         cam = GetComponent<Camera>();
         cam_rig = transform.parent.gameObject;
         cam_down_tilt = cam.transform.localRotation.eulerAngles.x;
@@ -56,12 +53,15 @@ public class CameraManager : MonoBehaviour
         if (!top_down_view)
         {
             cam.transform.Rotate(transform.right, -90 + cam_down_tilt);
-            ZoomView(zoom_out_max);
-            cam_rig.transform.position = last_pos_before_snap;
+            ZoomView(zoom_before_top_down);
+            cam_rig.transform.position = last_pos_before_top_down;
+            
         }
         else
         {
-            last_pos_before_snap = cam_rig.transform.position;
+            last_pos_before_top_down = cam_rig.transform.position;
+            zoom_before_top_down = cam.orthographicSize;
+            
             cam.transform.Rotate(transform.right, 90 - cam_down_tilt);
             ZoomView(zoom_out_max);
             cam_rig.transform.position = new Vector3(0, y_offset_on_snap, 0);
