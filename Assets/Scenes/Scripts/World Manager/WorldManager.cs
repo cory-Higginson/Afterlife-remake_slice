@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor.Search;
 using UnityEngine;
 
-public class WorldManager : MonoBehaviour
+public class WorldManager : Singleton<WorldManager>
 {
     public GameObject grid_location;
 
@@ -85,6 +85,8 @@ public class WorldManager : MonoBehaviour
         if (Input.GetKeyDown("a"))
         {
             var test = check_cardinal(planes[0][12], TileType.Road, 0);
+
+            //var temp = check_cardinal(SOUL, TileType.Road, 0);
         }
     }
 
@@ -182,14 +184,22 @@ public class WorldManager : MonoBehaviour
         return neighbours;
     }
 
-    private List<Direction> check_cardinal(GameObject obj, TileType checking_for, int plane)
+    public List<KeyValuePair<Direction, TileType>> check_cardinal(GameObject obj, TileType checking_for, int plane)
     {
         // Check the cardinal directions of a GameObject for a specific tile
         // Will be used to check if buildings are connected to roads, ect
+        Vector2 start = new Vector2(0, 0);
 
-        Vector2 start = obj.GetComponent<GridLocation>().grid_data.position;
+        if (obj.GetComponent<GridLocation>())
+        {
+            start = obj.GetComponent<GridLocation>().grid_data.position;
+        }
+        else if (obj.GetComponent<SOUL>())
+        {
+            start = obj.GetComponent<SOUL>().position;
+        }
 
-        List<Direction> is_connected = new List<Direction>();
+        List<KeyValuePair<Direction, TileType>> is_connected = new List<KeyValuePair<Direction, TileType>>();
 
         Vector2[] directions = new Vector2[4]
         {
@@ -211,18 +221,18 @@ public class WorldManager : MonoBehaviour
                 switch (dir)
                 {
                     case Vector2 v when v.Equals(Vector2.right):
-                        is_connected.Add(Direction.East);
+                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.East, checking_for));
                         break;
                     case Vector2 v when v.Equals(Vector2.left):
-                        is_connected.Add(Direction.West);
+                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.West, checking_for));
                         break;
                     case Vector2 v when v.Equals(Vector2.up):
-                        is_connected.Add(Direction.North);
+                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.North, checking_for));
                         break;
                     case Vector2 v when v.Equals(Vector2.down):
-                        is_connected.Add(Direction.South);
+                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.South, checking_for));
                         break;
-                }
+                } 
             }
         }
 

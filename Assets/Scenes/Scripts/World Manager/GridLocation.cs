@@ -57,7 +57,7 @@ public class GridLocation : MonoBehaviour
 
         if (timer >= max_timer && grid_data.stored_building == null)
         {
-            Vector3 spawn_point = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
+            Vector3 spawn_point = new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z);
 
             switch (grid_data.tile_type)
             {
@@ -66,13 +66,16 @@ public class GridLocation : MonoBehaviour
                     break;
                 case TileType.Gate:
                     grid_data.stored_building = Instantiate(gate, spawn_point, Quaternion.identity, this.transform);
+                    grid_data.connected_directions = WorldManager.Instance.check_cardinal(grid_data.stored_building, TileType.Road, 0);
+                    if (grid_data.connected_directions.Count > 0)
+                    {
+                        grid_data.stored_building.GetComponent<GateScript>().connected = true;
+                    }
                     break;
                 default:
                     grid_data.stored_building = Instantiate(generic_building, spawn_point, Quaternion.identity, this.transform);
                     break;
             }
-
-            
         }
     }
 }

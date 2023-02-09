@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class GateScript : MonoBehaviour
 {
-    private bool connected;
+    public GameObject soul;
+
+    public bool connected = false;
+    private float timer = 0;
+    private float max_timer = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +19,15 @@ public class GateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        if (connected)
+        {
+            timer += Time.deltaTime;
+        }
 
-    void check_connected()
-    {
-
+        if (timer >= max_timer)
+        {
+            Instantiate(soul, this.transform.position, Quaternion.identity);
+            timer = 0;
+        }
     }
 }
