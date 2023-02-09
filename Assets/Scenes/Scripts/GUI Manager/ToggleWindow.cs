@@ -7,11 +7,11 @@ public class ToggleWindow : MonoBehaviour
 {
     private Button button;
     [SerializeField] private GameObject window;
+    [SerializeField] private string SelectName;
+    [SerializeField] private ChangeTopSectionValues CSString;
     
     private bool windowEnabled;
-
-
-    // Start is called before the first frame update
+    
     private void Awake()
     {
         if (button == null)
@@ -19,23 +19,28 @@ public class ToggleWindow : MonoBehaviour
             button = GetComponent<Button>();
         }
         button.onClick.AddListener(TaskOnClick);
+
+        if (SelectName.Length == 0)
+        {
+            SelectName = GetComponentInChildren<Text>().text;
+        }
+        
+        CSString = FindObjectOfType<ChangeTopSectionValues>();
         
         window.SetActive(false);
-        windowEnabled = false;
     }
 
     void TaskOnClick()
     {
-        if (windowEnabled)
+        if (window.activeSelf)
         {
             window.SetActive(false);
-            windowEnabled = false;
         }
         else
         {
             window.SetActive(true);
-            windowEnabled = true;
             window.transform.SetAsLastSibling();
+            CSString.ChangeSelection(SelectName);
         }
     }
 }
