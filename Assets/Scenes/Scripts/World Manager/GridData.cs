@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GridData
 {
     public TileType tile_type;
+    public ZoneType zone_type = ZoneType.None;
     public GameObject stored_building;
     public Vector2 position;
-    public List<KeyValuePair<Direction, TileType>> connected_directions;
+    public List<Direction> connected_directions;
+    public bool connected;
 
     public GridData(TileType _tile_type, Vector2 _position)
     {

@@ -11,9 +11,15 @@ public enum TileType
         Rock,
         Liquid,
         Road,
-        Blue,
-        Red,
-        Green,
-        Yellow,
+        Zone,
         Gate
     };
+
+public enum ZoneType
+{
+    Blue,
+    Red,
+    Green,
+    Yellow,
+    None
+};

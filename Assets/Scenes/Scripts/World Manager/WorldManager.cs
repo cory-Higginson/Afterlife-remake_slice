@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class WorldManager : Singleton<WorldManager>
@@ -42,15 +39,30 @@ public class WorldManager : Singleton<WorldManager>
             }
         }
 
-        planes[0][3].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
-        planes[0][4].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
-        planes[0][9].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
-        planes[0][10].GetComponent<GridLocation>().grid_data.tile_type = TileType.Blue;
-        planes[0][20].GetComponent<GridLocation>().grid_data.tile_type = TileType.Yellow;
+        planes[0][3].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
+        planes[0][3].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Blue;
+
+        planes[0][4].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
+        planes[0][4].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Blue;
+
+        planes[0][9].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
+        planes[0][9].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Blue;
+
+        planes[0][10].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
+        planes[0][10].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Blue;
+
+        planes[0][20].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
+        planes[0][20].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Yellow;
 
         planes[0][13].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        setConnected(planes[0][13], 0);
+
         planes[0][18].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        setConnected(planes[0][18], 0);
+
         planes[0][6].GetComponent<GridLocation>().grid_data.tile_type = TileType.Road;
+        setConnected(planes[0][6], 0);
+
         planes[0][12].GetComponent<GridLocation>().grid_data.tile_type = TileType.Gate;
 
         //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
@@ -184,7 +196,7 @@ public class WorldManager : Singleton<WorldManager>
         return neighbours;
     }
 
-    public List<KeyValuePair<Direction, TileType>> check_cardinal(GameObject obj, TileType checking_for, int plane)
+    public List<Direction> check_cardinal(GameObject obj, TileType checking_for, int plane)
     {
         // Check the cardinal directions of a GameObject for a specific tile
         // Will be used to check if buildings are connected to roads, ect
@@ -199,7 +211,7 @@ public class WorldManager : Singleton<WorldManager>
             start = obj.GetComponent<SOUL>().position;
         }
 
-        List<KeyValuePair<Direction, TileType>> is_connected = new List<KeyValuePair<Direction, TileType>>();
+        List<Direction> is_connected = new List<Direction>();
 
         Vector2[] directions = new Vector2[4]
         {
@@ -221,21 +233,55 @@ public class WorldManager : Singleton<WorldManager>
                 switch (dir)
                 {
                     case Vector2 v when v.Equals(Vector2.right):
-                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.East, checking_for));
+                        is_connected.Add(Direction.East);
                         break;
                     case Vector2 v when v.Equals(Vector2.left):
-                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.West, checking_for));
+                        is_connected.Add(Direction.West);
                         break;
                     case Vector2 v when v.Equals(Vector2.up):
-                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.North, checking_for));
+                        is_connected.Add(Direction.North);
                         break;
                     case Vector2 v when v.Equals(Vector2.down):
-                        is_connected.Add(new KeyValuePair<Direction, TileType>(Direction.South, checking_for));
+                        is_connected.Add(Direction.South);
                         break;
                 } 
             }
         }
 
         return is_connected;
+    }
+
+    public void setConnected(GameObject road, int plane)
+    {
+        // Call when a road is placed
+        // set the connection status of tiles affected
+
+        if (road.GetComponent<GridLocation>())
+        {
+            Vector2 start = road.GetComponent<GridLocation>().grid_data.position;
+
+            Vector2[] directions = new Vector2[24]
+            {
+                new Vector2(1, 0), new Vector2(2, 0), new Vector2(3, 0), // right
+                new Vector2(0, -1), new Vector2(0, -2), new Vector2(0, -3), // back
+                new Vector2(-1, 0), new Vector2(-2, 0), new Vector2(-3, 0), // left
+                new Vector2(0, 1), new Vector2(0, 2), new Vector2(0, 3), // front
+                new Vector2(1, 1), new Vector2(1, 2), new Vector2(2, 1), // top right
+                new Vector2(1, -1), new Vector2(1, -2), new Vector2(2, -1), // bottom right
+                new Vector2(-1, 1), new Vector2(-1, 2), new Vector2(-2, 1), // top left
+                new Vector2(-1, -1), new Vector2(-1, -2), new Vector2(-2, -1) // bottom left
+            };
+
+            foreach (Vector2 dir in directions)
+            {
+                Vector2 current = new Vector2(start.x + dir.x, start.y + dir.y);
+
+                if (!withinRange(current)) continue;
+
+                planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.connected = true;
+            }
+        }
+
+        
     }
 }

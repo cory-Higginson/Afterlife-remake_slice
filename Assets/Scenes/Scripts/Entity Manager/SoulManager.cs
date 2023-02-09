@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-using WM = WorldManager.Instance;
-
 class SoulManager : MonoBehaviour
 {
 
@@ -21,7 +19,7 @@ class SoulManager : MonoBehaviour
     {
         foreach (GameObject soul in wanderingSouls)
         {
-           var connected = WM.check_cardinal(soul,TileType.Road,0);
+           var connected = WorldManager.Instance.check_cardinal(soul, TileType.Road, 0);
         }
     }
 
