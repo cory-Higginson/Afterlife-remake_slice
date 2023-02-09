@@ -8,7 +8,7 @@ public class ToggleWindow : MonoBehaviour
     private Button button;
     [SerializeField] private GameObject window;
     [SerializeField] private string SelectName;
-    [SerializeField] private ChangeTopSectionValues CSString;
+    [SerializeField] private ChangeRemoteValues CSString;
     
     private bool windowEnabled;
     
@@ -25,7 +25,7 @@ public class ToggleWindow : MonoBehaviour
             SelectName = GetComponentInChildren<Text>().text;
         }
         
-        CSString = FindObjectOfType<ChangeTopSectionValues>();
+        CSString = FindObjectOfType<ChangeRemoteValues>();
     }
 
     void TaskOnClick()

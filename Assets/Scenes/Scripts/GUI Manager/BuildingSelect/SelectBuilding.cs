@@ -8,7 +8,7 @@ public class SelectBuilding : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private string SelectName;
     [SerializeField] private BuildWindowManager window;
-    [SerializeField] private ChangeTopSectionValues CSString;
+    [SerializeField] private ChangeRemoteValues CSString;
     
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class SelectBuilding : MonoBehaviour
         }
 
         SelectName = GetComponentInChildren<Text>().text;
-        CSString = FindObjectOfType<ChangeTopSectionValues>();
+        CSString = FindObjectOfType<ChangeRemoteValues>();
         
         button.onClick.AddListener(TaskOnClick);
     }

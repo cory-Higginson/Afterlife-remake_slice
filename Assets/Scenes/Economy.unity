@@ -172,6 +172,7 @@ MonoBehaviour:
   tempAmountOfTiles: 250
   tempYear: 3
   soulRate: 0
+  remotesec: {fileID: 0}
   pennies: 0
   paycheckAmount: 0
   penniesPerSoulAmount: 0

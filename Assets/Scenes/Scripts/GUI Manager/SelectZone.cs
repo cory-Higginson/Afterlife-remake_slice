@@ -7,7 +7,7 @@ public class SelectZone : MonoBehaviour
 {
     [SerializeField] private Button button;
     [SerializeField] private string SelectName;
-    [SerializeField] private ChangeTopSectionValues CSString;
+    [SerializeField] private ChangeRemoteValues CSString;
     
     // Start is called before the first frame update
     private void Awake()
@@ -23,7 +23,7 @@ public class SelectZone : MonoBehaviour
         }
         
 
-        CSString = FindObjectOfType<ChangeTopSectionValues>();
+        CSString = FindObjectOfType<ChangeRemoteValues>();
 
         button.onClick.AddListener(TaskOnClick);
     }

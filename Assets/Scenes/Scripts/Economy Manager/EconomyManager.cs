@@ -11,6 +11,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private float tempAmountOfTiles; 
     [SerializeField] private int tempYear;
     [SerializeField] private float soulRate;
+    [SerializeField] private GameObject remotesec;
 
     public float TotalPennies
     {
@@ -45,12 +46,14 @@ public class EconomyManager : MonoBehaviour
     public void AddPennies(float amount)
     {
         pennies += amount;
+        remotesec.GetComponent<ChangeRemoteValues>().ChangeMoneyValue(pennies);
     }
 
     // Deduct funds.
     public void RemovePennies(float amount)
     {
         TotalPennies -= amount;
+        remotesec.GetComponent<ChangeRemoteValues>().ChangeMoneyValue(pennies);
     }
     
     // Round to 2 decimal places
@@ -64,11 +67,13 @@ public class EconomyManager : MonoBehaviour
     private void Update()
     {
         StartCoroutine(UpdateSoulRate());
+        AddPennies(1.0f);
     }
 
     IEnumerator UpdateSoulRate()
     {
         soulRate = Round(CalculateSoulRate(tempPopulation, tempAmountOfTiles, tempYear), 2);
+        remotesec.GetComponent<ChangeRemoteValues>().ChangeSoulsValue(soulRate);
         yield return new WaitForSeconds(0.2f);
     }
 }

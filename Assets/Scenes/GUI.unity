@@ -5295,6 +5295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752472265}
   - component: {fileID: 752472266}
+  - component: {fileID: 752472267}
   m_Layer: 5
   m_Name: Remote
   m_TagString: Untagged
@@ -5344,6 +5345,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragRectTransform: {fileID: 0}
   canvas: {fileID: 0}
+--- !u!114 &752472267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752472264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dbf3efd29cc5e34aa408150402cb8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YearValue: {fileID: 1613613161}
+  MoneyValue: {fileID: 588661802}
+  SelectionValue: {fileID: 925171794}
+  CostValue: {fileID: 446705881}
+  SoulsValue: {fileID: 525672220}
+  LostValue: {fileID: 1510524926}
+  EMBOValue: {fileID: 460823358}
+  PerSoulValue: {fileID: 1147004340}
 --- !u!1 &769810625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6297,7 +6318,6 @@ GameObject:
   - component: {fileID: 881727800}
   - component: {fileID: 881727802}
   - component: {fileID: 881727801}
-  - component: {fileID: 881727803}
   m_Layer: 5
   m_Name: BottomSection
   m_TagString: Untagged
@@ -6367,22 +6387,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881727799}
   m_CullTransparentMesh: 1
---- !u!114 &881727803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881727799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7d5da11aac9094fab8d5bfda0e7470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SoulsValue: {fileID: 525672220}
-  LostValue: {fileID: 1510524926}
-  EMBOValue: {fileID: 460823358}
-  PerSoulValue: {fileID: 1147004340}
 --- !u!1 &892283436
 GameObject:
   m_ObjectHideFlags: 0
@@ -7807,7 +7811,6 @@ GameObject:
   - component: {fileID: 1070374230}
   - component: {fileID: 1070374232}
   - component: {fileID: 1070374231}
-  - component: {fileID: 1070374233}
   m_Layer: 5
   m_Name: TopSection
   m_TagString: Untagged
@@ -7877,22 +7880,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070374229}
   m_CullTransparentMesh: 1
---- !u!114 &1070374233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070374229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dbf3efd29cc5e34aa408150402cb8ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  YearValue: {fileID: 0}
-  MoneyValue: {fileID: 588661802}
-  SelectionValue: {fileID: 925171794}
-  CostValue: {fileID: 446705881}
 --- !u!1 &1090856189
 GameObject:
   m_ObjectHideFlags: 0
