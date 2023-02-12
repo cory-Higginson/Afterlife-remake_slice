@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GateScript : MonoBehaviour
 {
-    public GameObject soul;
+    public GameObject Entityman;
 
     public bool connected = false;
     private float timer = 0;
@@ -13,7 +14,7 @@ public class GateScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Entityman = GameObject.Find("Entity Manager");
     }
 
     // Update is called once per frame
@@ -26,7 +27,8 @@ public class GateScript : MonoBehaviour
 
         if (timer >= max_timer)
         {
-            Instantiate(soul, this.transform.position, Quaternion.identity);
+            //Instantiate(soul, this.transform.position, Quaternion.identity);
+            Entityman.GetComponent<SoulManager>().AddSoul(SOULLocation.wandering,this.transform.position,this.GetComponentInParent<GridLocation>().grid_data.position,Quaternion.identity);
             timer = 0;
         }
     }
