@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WorldManager : Singleton<WorldManager>
 {
@@ -16,8 +17,9 @@ public class WorldManager : Singleton<WorldManager>
     public Vector3 center_point;
 
     // Start is called before the first frame update
-    void Start()
+     protected override void  Awake()
     {
+        base.Awake();
         for (int i = 0; i < num_of_planes; i++)
         {
             planes[i] = new GameObject[grid_x * grid_y];
@@ -102,6 +104,12 @@ public class WorldManager : Singleton<WorldManager>
         }
     }
 
+    public ref GameObject[][] getPlanes()
+    {
+        Debug.Log(planes[0].Length);
+        return ref planes;
+    }
+    
     private int getIndex(Vector2 position)
     {
         return (int)position.x + (int)position.y * grid_x;
