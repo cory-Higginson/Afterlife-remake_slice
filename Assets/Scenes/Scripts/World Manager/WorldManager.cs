@@ -70,10 +70,25 @@ public class WorldManager : Singleton<WorldManager>
         //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
     }
 
-    // Update is called once per frame
+     private void Start()
+     {
+         InputManager.Instance.my_input_actions.AfterLifeActions.RotateView.started += rotateView;
+     }
+
+     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("]"))
+        if (Input.GetKeyDown("a"))
+        {
+            var test = check_cardinal(planes[0][12], TileType.Road, 0);
+
+            //var temp = check_cardinal(SOUL, TileType.Road, 0);
+        }
+    }
+
+    private void rotateView(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Single>() == 1)
         {
             Debug.Log("works?");
             foreach (GameObject[] plane in planes)
@@ -84,7 +99,7 @@ public class WorldManager : Singleton<WorldManager>
                 }
             }
         }
-        if (Input.GetKeyDown("["))
+        else
         {
             Debug.Log("works?");
             foreach (GameObject[] plane in planes)
@@ -94,13 +109,6 @@ public class WorldManager : Singleton<WorldManager>
                     tile.transform.RotateAround(center_point, Vector3.up, -90);
                 }
             }
-        }
-
-        if (Input.GetKeyDown("a"))
-        {
-            var test = check_cardinal(planes[0][12], TileType.Road, 0);
-
-            //var temp = check_cardinal(SOUL, TileType.Road, 0);
         }
     }
 
@@ -289,7 +297,5 @@ public class WorldManager : Singleton<WorldManager>
                 planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.connected = true;
             }
         }
-
-        
     }
 }
