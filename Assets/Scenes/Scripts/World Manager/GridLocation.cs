@@ -13,6 +13,10 @@ public class GridLocation : MonoBehaviour
     private float timer = 0;
     private float max_timer = 5;
 
+    private Color brown = new Color(0.5188679f, 0.3241828f, 0.007342457f, 1.0f);
+    private Color orange = new Color(0.901f, 0.4962393f, 0f, 1.0f);
+    private Color purple = new Color(0.754717f, 0.1103596f, 0.5200665f, 1.0f);
+
     private Material tile_mat;
 
     // Start is called before the first frame update
@@ -47,6 +51,21 @@ public class GridLocation : MonoBehaviour
                         case ZoneType.Red:
                             tile_mat.color = Color.red;
                             break;
+                        case ZoneType.Brown:
+                            tile_mat.color = brown;
+                            break;
+                        case ZoneType.Generic:
+                            tile_mat.color = Color.black;
+                            break;
+                        case ZoneType.Purple:
+                            tile_mat.color = purple;
+                            break;
+                        case ZoneType.Orange:
+                            tile_mat.color = orange;
+                            break;
+                        case ZoneType.None:
+                            tile_mat.color = Color.white;
+                            break;
                         default:
                             // Do nothing
                             break;
@@ -54,7 +73,7 @@ public class GridLocation : MonoBehaviour
 
                     break;
                 case TileType.Road:
-                    tile_mat.color = Color.black;
+                    tile_mat.color = new Color(55, 43, 37, 1);
                     break;
                 case TileType.Gate:
                     tile_mat.color = Color.grey;

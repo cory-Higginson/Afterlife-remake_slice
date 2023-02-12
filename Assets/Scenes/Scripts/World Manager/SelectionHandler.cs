@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
-public class SelectionHandler : MonoBehaviour
+public class SelectionHandler : Singleton<SelectionHandler>
 {
     private GameObject[][] tiles;
     
     private bool zoning;
-    private ZoneType current_zoning_type = ZoneType.Blue;
+    public ZoneType current_zoning_type = ZoneType.Blue;
     private Vector3 selection_start;
     private Vector3 selection_end;
     private float ray_cast_timer = 0;
@@ -22,6 +22,14 @@ public class SelectionHandler : MonoBehaviour
     {
         InputManager.Instance.my_input_actions.AfterLifeActions.LeftMouse.started += startZoning;
         InputManager.Instance.my_input_actions.AfterLifeActions.LeftMouse.canceled += finishZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.BlueZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.BrownZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.GenericZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.GreenZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.OrangeZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.PurpleZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.RedZoning.started += changeZoning;
+        InputManager.Instance.my_input_actions.AfterLifeActions.YellowZoning.started += changeZoning;
 
         tiles = WorldManager.Instance.getPlanes();
     }
@@ -160,5 +168,46 @@ public class SelectionHandler : MonoBehaviour
             tile.grid_data.zone_type = current_zoning_type;
         }
         // do something to selection.
+    }
+
+    public void changeZoning(InputAction.CallbackContext context)
+    {
+        if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.BlueZoning.name)
+        {
+            changeZoneType(ZoneType.Blue);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.BrownZoning.name)
+        {
+            changeZoneType(ZoneType.Brown);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.GenericZoning.name)
+        {
+            changeZoneType(ZoneType.Generic);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.GreenZoning.name)
+        {
+            changeZoneType(ZoneType.Green);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.OrangeZoning.name)
+        {
+            changeZoneType(ZoneType.Orange);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.PurpleZoning.name)
+        {
+            changeZoneType(ZoneType.Purple);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.RedZoning.name)
+        {
+            changeZoneType(ZoneType.Red);
+        }
+        else if (context.action.name == InputManager.Instance.my_input_actions.AfterLifeActions.YellowZoning.name)
+        {
+            changeZoneType(ZoneType.Yellow);
+        }
+    }
+
+    public void changeZoneType(ZoneType zone)
+    {
+        current_zoning_type = zone;
     }
 }
