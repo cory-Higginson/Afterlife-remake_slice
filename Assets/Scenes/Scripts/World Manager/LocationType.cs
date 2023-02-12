@@ -21,5 +21,9 @@ public enum ZoneType
     Red,
     Green,
     Yellow,
+    Brown,
+    Generic,
+    Orange, 
+    Purple,
     None
 };
