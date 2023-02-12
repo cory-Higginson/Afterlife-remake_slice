@@ -298,4 +298,25 @@ public class WorldManager : Singleton<WorldManager>
             }
         }
     }
+
+    public int soulWalkingDistance(GameObject gate, GameObject zone_building, int plane)
+    {
+        // find how far SOULs need to walk in order to get from the Gate
+        // to their sin/reward
+
+    }
+
+    public int vibe_check(int index, int plane)
+    {
+        // Get the current vibe of a tile
+        return planes[plane][index].GetComponent<GridLocation>().grid_data.vibes;
+    }
+
+    public int update_vibe(int plane, int index)
+    {
+        int radius = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>()
+            .vibe_radius;
+
+
+    }
 }
