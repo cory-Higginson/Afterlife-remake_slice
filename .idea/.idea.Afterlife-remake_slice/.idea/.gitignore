@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -6,6 +7,16 @@
 /modules.xml
 /contentModel.xml
 /projectSettingsUpdater.xml
+=======
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Afterlife-remake_slice.iml
+>>>>>>> 8-advisor-manager
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files

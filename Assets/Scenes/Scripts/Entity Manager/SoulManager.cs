@@ -3,14 +3,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-enum SOULLocation
+public enum SOULLocation
 {
     wandering,
     zoned,
 }
 
 
-class SoulManager : MonoBehaviour
+public class SoulManager : MonoBehaviour
 {
     [SerializeField] private int totalSouls;
     [SerializeField] private GameObject soulPrefab;
