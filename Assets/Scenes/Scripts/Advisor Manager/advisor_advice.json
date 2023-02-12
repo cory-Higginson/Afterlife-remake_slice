@@ -1,0 +1,16 @@
+{
+  "advice": [
+    {
+      "advice_name": "no path",
+      "advice_priority": "1",
+      "advice_text": "¬Also check this out `We can interrupt each other mid sentence o.o/¬Pretty cra`zy stuff!",
+      "voice_filenames" : "voice1.wav"
+    },
+    {
+      "advice_name": "low money",
+      "advice_priority": "1",
+      "advice_text": "You are starting to run low on funds./ You should do something to improve that./So you dont lose.",
+      "voice_filenames" : "voice2.wav,voice3.wav,voice4.wav"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "advice": [
+    {
+      "advice_name": "no path",
+      "advice_priority": 1,
+      "advice_text": "There is no path avaialable between a and b./Pretty silly of you to not set that up."
+    },
+    {
+      "advice_name": "low money",
+      "advice_priority": 1,
+      "advice_text": "You are starting to run low on funds./ You should do something to improve that./So you dont lose."
+    }
+  ]
+}
