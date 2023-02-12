@@ -29,8 +29,7 @@ public class advisor_script : MonoBehaviour
     private string angel_text_hex = "FFE49B";
 
     private bool is_start_read_next_frame;
-
-    private UI_input input = null;
+    
 
     public TextMeshProUGUI subtitle_text;
     
@@ -45,11 +44,6 @@ public class advisor_script : MonoBehaviour
 
     void Start()
     {
-
-        input = new UI_input();
-        
-        
-        input.Enable();
         json_advice_array = JsonUtility.FromJson<AdviceList>(adviceJson.text);
 
         devil_sprite.StopPlayback();
@@ -83,7 +77,7 @@ public class advisor_script : MonoBehaviour
 
     private void inputs()
     {
-        if (input.Player.ContinueText.triggered)
+        if (Input.GetKeyDown("o"))
         {
             if (is_reading && read_letter_index_int > 0)
             {
