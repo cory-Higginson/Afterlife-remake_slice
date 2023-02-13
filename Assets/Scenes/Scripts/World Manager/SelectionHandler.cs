@@ -19,10 +19,11 @@ public class SelectionHandler : Singleton<SelectionHandler>
     public List<GridLocation> selected_tiles = new List<GridLocation>();
     
     // Economy
-    [SerializeField]private EconomyManager _economyManager;
+    [SerializeField] private EconomyManager _economyManager;
 
     private void Start()
     {
+        // Find Economy manager
         _economyManager = FindObjectOfType<EconomyManager>();
         
         InputManager.Instance.my_input_actions.AfterLifeActions.LeftMouse.started += startZoning;

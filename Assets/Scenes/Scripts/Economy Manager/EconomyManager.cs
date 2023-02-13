@@ -13,6 +13,9 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private float soulRate;
     [SerializeField] private GameObject remotesec;
 
+    private SoulManager _soulManager;
+    private WorldManager _worldManager;
+
     public uint current_cost;
     
     public float TotalPennies
@@ -41,7 +44,10 @@ public class EconomyManager : MonoBehaviour
     // Calculate the SOUL Rate.
     public float CalculateSoulRate(float population, float amountOfTiles, int year)
     {
-        return population / amountOfTiles * (year * rateMultiplier);
+        var value = population / amountOfTiles * (year * rateMultiplier) > 0
+            ? population / amountOfTiles * (year * rateMultiplier)
+            : 0;
+        return value;
     }
 
     // Add funds.
@@ -80,8 +86,19 @@ public class EconomyManager : MonoBehaviour
 
     IEnumerator UpdateSoulRate()
     {
-        soulRate = Round(CalculateSoulRate(tempPopulation, tempAmountOfTiles, tempYear), 2);
+        soulRate = Round(CalculateSoulRate(_soulManager.AmountOfSouls(), _worldManager.amount_of_changed_tiles, tempYear), 2);
+        Debug.Log(Round(CalculateSoulRate(_soulManager.AmountOfSouls(), _worldManager.amount_of_changed_tiles, tempYear), 10));
+        yield return new WaitForSeconds(0.9f);
         //remotesec.GetComponent<ChangeRemoteValues>().ChangeSoulsValue(soulRate);
-        yield return new WaitForSeconds(0.2f);
+    }
+
+
+    private void Start()
+    {
+        // Update the money at the start
+        remotesec.GetComponent<ChangeRemoteValues>().ChangeMoneyValue(TotalPennies);
+        // Load references
+        _worldManager = GameObject.Find("World Manager").GetComponent<WorldManager>();
+        _soulManager = GameObject.Find("Entity Manager").GetComponent<SoulManager>();
     }
 }

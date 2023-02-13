@@ -188,4 +188,9 @@ public class SoulManager : MonoBehaviour
 
 
     }
+
+    public int AmountOfSouls()
+    {
+        return totalSouls;
+    }
 }
