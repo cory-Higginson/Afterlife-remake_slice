@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class WorldManager : Singleton<WorldManager>
 {
     public GameObject grid_location;
+    
+    // List of Grid_Location GameObjects
+    public List<GameObject> grid_location_list;
+    public int amount_of_changed_tiles;
 
     static public int num_of_planes = 2;
 
@@ -37,6 +41,8 @@ public class WorldManager : Singleton<WorldManager>
                     planes[i][j * grid_x + k] = Instantiate(grid_location, spawn_location, Quaternion.identity, this.transform);
                     planes[i][j * grid_x + k].GetComponent<GridLocation>().grid_data =
                         new GridData(TileType.None, new Vector2(k, j));
+                    // Add the GameObject to the list
+                    grid_location_list.Add(planes[i][j * grid_x + k]);
                 }
             }
         }
@@ -318,5 +324,22 @@ public class WorldManager : Singleton<WorldManager>
             .vibe_radius;
 
         return 0;
+    }
+    
+    public int NonGenericTilesAmount()
+    {
+        var amount = 0;
+        var planes = grid_location_list;
+        foreach (var plane in planes)
+        {
+            var plane_grid_data = plane.GetComponent<GridLocation>();
+            if (plane_grid_data.grid_data.zone_type != ZoneType.None)
+            {
+                amount += 1;
+            }
+        }
+
+        amount_of_changed_tiles = amount;
+        return amount;
     }
 }
