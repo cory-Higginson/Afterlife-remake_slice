@@ -9,6 +9,12 @@ public class SelectZone : MonoBehaviour
     [SerializeField] private string SelectName;
     private ChangeRemoteValues CSString;
     [SerializeField] private  ZoneType zone_type;
+
+    // Luryann change UI
+    [SerializeField] private int zone_cost;
+    [SerializeField] private EconomyManager _economyManager;
+    private int current_cost;
+    
     
     // Start is called before the first frame update
     private void Awake()
@@ -22,9 +28,10 @@ public class SelectZone : MonoBehaviour
         { 
             SelectName = gameObject.transform.name;
         }
-        
 
         CSString = FindObjectOfType<ChangeRemoteValues>();
+        _economyManager = FindObjectOfType<EconomyManager>();
+        
 
         button.onClick.AddListener(TaskOnClick);
     }
@@ -33,5 +40,6 @@ public class SelectZone : MonoBehaviour
     {
         CSString.ChangeSelection(SelectName);
         SelectionHandler.Instance.current_zoning_type = zone_type;
+        _economyManager.updateCost(zone_cost);
     }
 }
