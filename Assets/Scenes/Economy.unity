@@ -980,7 +980,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &102184406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +4090,7 @@ MonoBehaviour:
   remotesec: {fileID: 752472264}
   amount_per_soul: 0
   current_cost: 0
-  pennies: 100000
+  pennies: 10000
   paycheckAmount: 0
   penniesPerSoulAmount: 0
 --- !u!1 &582214501
@@ -5983,7 +5983,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &836355833
 GameObject:
   m_ObjectHideFlags: 0
@@ -7832,7 +7832,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1070374229
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,7 +8413,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1188349368
 GameObject:
   m_ObjectHideFlags: 0
@@ -8553,7 +8553,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1223635451
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,7 +10740,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 1554630427}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1532673519
 GameObject:
   m_ObjectHideFlags: 0
@@ -11215,7 +11215,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1669485819
 GameObject:
   m_ObjectHideFlags: 0
@@ -12587,7 +12587,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 551330826}
   CSString: {fileID: 0}
-  prefabs: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &1846520944
 GameObject:
   m_ObjectHideFlags: 0

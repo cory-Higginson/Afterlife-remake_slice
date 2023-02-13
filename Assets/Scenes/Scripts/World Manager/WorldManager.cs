@@ -41,6 +41,7 @@ public class WorldManager : Singleton<WorldManager>
                     planes[i][j * grid_x + k] = Instantiate(grid_location, spawn_location, Quaternion.identity, this.transform);
                     planes[i][j * grid_x + k].GetComponent<GridLocation>().grid_data =
                         new GridData(TileType.None, new Vector2(k, j), i);
+                    grid_location_list.Add(planes[i][j * grid_x + k]);
                 }
             }
         }
