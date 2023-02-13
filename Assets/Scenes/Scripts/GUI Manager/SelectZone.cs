@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class SelectZone : MonoBehaviour
 {
-    [SerializeField] private Button button;
+    private Button button;
     [SerializeField] private string SelectName;
-    [SerializeField] private ChangeRemoteValues CSString;
+    private ChangeRemoteValues CSString;
+    [SerializeField] private  ZoneType zone_type;
     
     // Start is called before the first frame update
     private void Awake()
@@ -31,5 +32,6 @@ public class SelectZone : MonoBehaviour
     void TaskOnClick()
     {
         CSString.ChangeSelection(SelectName);
+        SelectionHandler.Instance.current_zoning_type = zone_type;
     }
 }

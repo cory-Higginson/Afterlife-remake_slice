@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970159191}
   - component: {fileID: 970159192}
+  - component: {fileID: 970159193}
   m_Layer: 0
   m_Name: World Manager
   m_TagString: Untagged
@@ -171,3 +172,21 @@ MonoBehaviour:
   grid_x: 6
   grid_y: 6
   center_point: {x: 0, y: 0, z: 0}
+--- !u!114 &970159193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970159190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23b21ba796e5944fbc691e33923b749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalSouls: 0
+  soulPrefab: {fileID: 8336109442999174711, guid: 67752238fa7f8ee438e565d6e0e025c6, type: 3}
+  Souls: []
+  ZonedSouls: []
+  wanderingSouls: []
+  timepass: 3

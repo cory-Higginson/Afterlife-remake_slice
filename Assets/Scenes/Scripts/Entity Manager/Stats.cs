@@ -3,6 +3,7 @@
 public class Stats : MonoBehaviour
 {
     [SerializeField]private int Vibes = 3;           // good bad vibes
+    [SerializeField]public int vibe_radius;
     public bool directConnect;
     public bool Connected;      // attached to road?
     public bool Energised;      // is it near a siphon or not

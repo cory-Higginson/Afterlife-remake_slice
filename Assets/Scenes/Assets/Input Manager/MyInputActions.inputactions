@@ -418,6 +418,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LeftMouse",
+                    "type": "Button",
+                    "id": "3663b7dc-ac5a-4e24-bfb0-5348e8d67233",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseMoved",
+                    "type": "Value",
+                    "id": "f05b965e-63c1-41ac-83cb-11970373c506",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1111,6 +1129,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "CentreViewToCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2d23adc-d9c9-4e2e-a6ec-a9dee8c35df1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a88223c-527a-4968-a0e3-d41cf6d97df1",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseMoved",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

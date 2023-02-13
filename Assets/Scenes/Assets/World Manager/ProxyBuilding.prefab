@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 6722492892863211358}
   - component: {fileID: 6046514718704447735}
   - component: {fileID: 7053167958041742976}
+  - component: {fileID: 6210877655397620925}
+  - component: {fileID: 3435839952249437472}
+  - component: {fileID: 3445195786824111908}
   m_Layer: 0
   m_Name: ProxyBuilding
   m_TagString: Untagged
@@ -83,3 +86,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6210877655397620925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383955388336271174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5dd5cf1525416592c66a61df6f79f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeable: 
+  buildName: Generic name
+  efficiency: 100
+  cost: 30
+  description: this building is decades old
+--- !u!114 &3435839952249437472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383955388336271174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be53585eb03344b1870129a7265fcf34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumCapacity: 215
+  CurrentCapacity: 0
+  TemporaryCapacity: []
+  PermanentCapacity: []
+--- !u!114 &3445195786824111908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383955388336271174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b87a1a7f0a24d5ea4b2dd752913dd22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Vibes: 3
+  directConnect: 0
+  Connected: 0
+  Energised: 0
+  Locked: 0
+  LockCost: 0

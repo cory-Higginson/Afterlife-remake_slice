@@ -12,15 +12,14 @@ public class WorldManager : Singleton<WorldManager>
     public int grid_x;
     public int grid_y;
 
-    private GameObject [][] planes = new GameObject[num_of_planes][];
+    public GameObject [][] planes = new GameObject[num_of_planes][];
 
     public Vector3 center_point;
 
     // Start is called before the first frame update
-    void Start()
+     protected override void  Awake()
     {
-        InputManager.Instance.my_input_actions.AfterLifeActions.RotateView.started += rotateView;
-        
+        base.Awake();
         for (int i = 0; i < num_of_planes; i++)
         {
             planes[i] = new GameObject[grid_x * grid_y];
@@ -71,34 +70,14 @@ public class WorldManager : Singleton<WorldManager>
         //planes[0][21].GetComponent<GridLocation>().grid_data.tile_type = TileType.Transport;
     }
 
-    // Update is called once per frame
+     private void Start()
+     {
+         InputManager.Instance.my_input_actions.AfterLifeActions.RotateView.started += rotateView;
+     }
+
+     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown("]"))
-        {
-            Debug.Log("works?");
-            foreach (GameObject[] plane in planes)
-            {
-                foreach (GameObject tile in plane)
-                {
-                    tile.transform.RotateAround(center_point, Vector3.up, 90);
-                }
-            }
-        }
-        if (Input.GetKeyDown("["))
-        {
-            Debug.Log("works?");
-            foreach (GameObject[] plane in planes)
-            {
-                foreach (GameObject tile in plane)
-                {
-                    tile.transform.RotateAround(center_point, Vector3.up, -90);
-                }
-            }
-        }
-        */
-
         if (Input.GetKeyDown("a"))
         {
             var test = check_cardinal(planes[0][12], TileType.Road, 0);
@@ -133,12 +112,18 @@ public class WorldManager : Singleton<WorldManager>
         }
     }
 
-    private int getIndex(Vector2 position)
+    public ref GameObject[][] getPlanes()
+    {
+        Debug.Log(planes[0].Length);
+        return ref planes;
+    }
+    
+    public int getIndex(Vector2 position)
     {
         return (int)position.x + (int)position.y * grid_x;
     }
 
-    private bool withinRange(Vector2 position)
+    public bool withinRange(Vector2 position)
     {
         if (position.x > grid_x - 1 || position.x < 0 ||
             position.y > grid_y - 1 || position.y < 0) return false;
@@ -312,5 +297,26 @@ public class WorldManager : Singleton<WorldManager>
                 planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.connected = true;
             }
         }
+    }
+
+    public int soulWalkingDistance(GameObject gate, GameObject zone_building, int plane)
+    {
+        // find how far SOULs need to walk in order to get from the Gate
+        // to their sin/reward
+        return 0;
+    }
+
+    public int vibe_check(int index, int plane)
+    {
+        // Get the current vibe of a tile
+        return planes[plane][index].GetComponent<GridLocation>().grid_data.vibes;
+    }
+
+    public int update_vibe(int plane, int index)
+    {
+        int radius = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>()
+            .vibe_radius;
+
+        return 0;
     }
 }

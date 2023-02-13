@@ -440,6 +440,24 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""3663b7dc-ac5a-4e24-bfb0-5348e8d67233"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseMoved"",
+                    ""type"": ""Value"",
+                    ""id"": ""f05b965e-63c1-41ac-83cb-11970373c506"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1135,6 +1153,28 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""CentreViewToCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2d23adc-d9c9-4e2e-a6ec-a9dee8c35df1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a88223c-527a-4968-a0e3-d41cf6d97df1"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseMoved"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1189,6 +1229,8 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         m_AfterLifeActions_CenterANDZoomIn = m_AfterLifeActions.FindAction("CenterANDZoomIn", throwIfNotFound: true);
         m_AfterLifeActions_CenterANDZoomOut = m_AfterLifeActions.FindAction("CenterANDZoomOut", throwIfNotFound: true);
         m_AfterLifeActions_CentreViewToCursor = m_AfterLifeActions.FindAction("CentreViewToCursor", throwIfNotFound: true);
+        m_AfterLifeActions_LeftMouse = m_AfterLifeActions.FindAction("LeftMouse", throwIfNotFound: true);
+        m_AfterLifeActions_MouseMoved = m_AfterLifeActions.FindAction("MouseMoved", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1294,6 +1336,8 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_AfterLifeActions_CenterANDZoomIn;
     private readonly InputAction m_AfterLifeActions_CenterANDZoomOut;
     private readonly InputAction m_AfterLifeActions_CentreViewToCursor;
+    private readonly InputAction m_AfterLifeActions_LeftMouse;
+    private readonly InputAction m_AfterLifeActions_MouseMoved;
     public struct AfterLifeActionsActions
     {
         private @MyInputActions m_Wrapper;
@@ -1344,6 +1388,8 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         public InputAction @CenterANDZoomIn => m_Wrapper.m_AfterLifeActions_CenterANDZoomIn;
         public InputAction @CenterANDZoomOut => m_Wrapper.m_AfterLifeActions_CenterANDZoomOut;
         public InputAction @CentreViewToCursor => m_Wrapper.m_AfterLifeActions_CentreViewToCursor;
+        public InputAction @LeftMouse => m_Wrapper.m_AfterLifeActions_LeftMouse;
+        public InputAction @MouseMoved => m_Wrapper.m_AfterLifeActions_MouseMoved;
         public InputActionMap Get() { return m_Wrapper.m_AfterLifeActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1491,6 +1537,12 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 @CentreViewToCursor.started -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
                 @CentreViewToCursor.performed -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
                 @CentreViewToCursor.canceled -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnCentreViewToCursor;
+                @LeftMouse.started -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.performed -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.canceled -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnLeftMouse;
+                @MouseMoved.started -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnMouseMoved;
+                @MouseMoved.performed -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnMouseMoved;
+                @MouseMoved.canceled -= m_Wrapper.m_AfterLifeActionsActionsCallbackInterface.OnMouseMoved;
             }
             m_Wrapper.m_AfterLifeActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1633,6 +1685,12 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
                 @CentreViewToCursor.started += instance.OnCentreViewToCursor;
                 @CentreViewToCursor.performed += instance.OnCentreViewToCursor;
                 @CentreViewToCursor.canceled += instance.OnCentreViewToCursor;
+                @LeftMouse.started += instance.OnLeftMouse;
+                @LeftMouse.performed += instance.OnLeftMouse;
+                @LeftMouse.canceled += instance.OnLeftMouse;
+                @MouseMoved.started += instance.OnMouseMoved;
+                @MouseMoved.performed += instance.OnMouseMoved;
+                @MouseMoved.canceled += instance.OnMouseMoved;
             }
         }
     }
@@ -1685,5 +1743,7 @@ public partial class @MyInputActions : IInputActionCollection2, IDisposable
         void OnCenterANDZoomIn(InputAction.CallbackContext context);
         void OnCenterANDZoomOut(InputAction.CallbackContext context);
         void OnCentreViewToCursor(InputAction.CallbackContext context);
+        void OnLeftMouse(InputAction.CallbackContext context);
+        void OnMouseMoved(InputAction.CallbackContext context);
     }
 }
