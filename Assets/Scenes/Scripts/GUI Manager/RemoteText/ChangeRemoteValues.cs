@@ -55,7 +55,7 @@ public class ChangeRemoteValues : MonoBehaviour
         EMBOValue.text = "EMBOs: " + EMBOs;
     }
 
-    public void ChangePerSoulValue(int perSoul)
+    public void ChangePerSoulValue(float perSoul)
     {
         PerSoulValue.text = perSoul.ToString() + "¢ per SOUL";
     }

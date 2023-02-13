@@ -46,6 +46,7 @@ public class WorldManager : Singleton<WorldManager>
                 }
             }
         }
+        amount_of_changed_tiles = grid_location_list.Count;
 
         planes[0][3].GetComponent<GridLocation>().grid_data.tile_type = TileType.Zone;
         planes[0][3].GetComponent<GridLocation>().grid_data.zone_type = ZoneType.Blue;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,6 +13,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private int tempYear;
     [SerializeField] private float soulRate;
     [SerializeField] private GameObject remotesec;
+    public float amount_per_soul;
 
     private SoulManager _soulManager;
     private WorldManager _worldManager;
@@ -44,10 +46,7 @@ public class EconomyManager : MonoBehaviour
     // Calculate the SOUL Rate.
     public float CalculateSoulRate(float population, float amountOfTiles, int year)
     {
-        var value = population / amountOfTiles * (year * rateMultiplier) > 0
-            ? population / amountOfTiles * (year * rateMultiplier)
-            : 0;
-        return value;
+        return population / amountOfTiles * (year * rateMultiplier);
     }
 
     // Add funds.
@@ -87,7 +86,9 @@ public class EconomyManager : MonoBehaviour
     IEnumerator UpdateSoulRate()
     {
         soulRate = Round(CalculateSoulRate(_soulManager.AmountOfSouls(), _worldManager.amount_of_changed_tiles, tempYear), 2);
-        Debug.Log(Round(CalculateSoulRate(_soulManager.AmountOfSouls(), _worldManager.amount_of_changed_tiles, tempYear), 10));
+        amount_per_soul = 1 * soulRate;
+        AddPennies(amount_per_soul);
+        remotesec.GetComponent<ChangeRemoteValues>().ChangePerSoulValue(amount_per_soul);
         yield return new WaitForSeconds(0.9f);
         //remotesec.GetComponent<ChangeRemoteValues>().ChangeSoulsValue(soulRate);
     }
