@@ -22,10 +22,16 @@ public class SoulManager : MonoBehaviour
     //[SerializeField] private int max_wandeing;
     //[SerializeField] private int max_
 
+    [SerializeField] private ChangeRemoteValues _remoteValues;
 
 
     private float time = 0.0f;
     [SerializeField] private float timepass = 3.0f;
+
+    public void Awake()
+    {
+        _remoteValues = FindObjectOfType<ChangeRemoteValues>();
+    }
 
     public void AddSoul(SOULLocation soulLocation, Vector3 pos, Vector2 grid, Quaternion identity)
     {
@@ -35,6 +41,8 @@ public class SoulManager : MonoBehaviour
             soul.transform.parent = GameObject.Find("Gate(Clone)").transform;
             wanderingSouls.Add(soul);
             wanderingSouls[wanderingSouls.Count - 1].GetComponent<SOUL>().position = grid;
+            
+            _remoteValues.ChangeSoulsValue(wanderingSouls.Count);
         }
     }
 

@@ -11,7 +11,7 @@ public class SelectZone : MonoBehaviour
     [SerializeField] private  ZoneType zone_type;
 
     // Luryann change UI
-    [SerializeField] private int zone_cost;
+    [SerializeField] private uint zone_cost;
     [SerializeField] private EconomyManager _economyManager;
     private int current_cost;
     

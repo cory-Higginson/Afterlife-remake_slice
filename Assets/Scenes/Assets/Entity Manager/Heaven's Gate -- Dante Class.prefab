@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7999200395527075924}
   - component: {fileID: -1579676599795190889}
-  - component: {fileID: -569415577713227225}
+  - component: {fileID: -2356825845259249537}
   - component: {fileID: -104821033224580803}
   - component: {fileID: 2854900788491801670}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-569415577713227225
+--- !u!114 &-2356825845259249537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,14 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462511246081767095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5dd5cf1525416592c66a61df6f79f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 910bdc9b1ba647e5a04ed786e424ea63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   placeable: 
-  buildName: Heaven's Gate -- Dante Class
+  buildName: Heaven's Gate
   efficiency: 100
   cost: 50000
   description: this building is decades old
+  TierName: Dante Class
+  NextUpgrade: {fileID: -1434443649041710865, guid: 3739eac1bf3d2c44c8091d3ce0084b76, type: 3}
+  UpgradeCost: 50000
 --- !u!114 &-104821033224580803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vibes: 3
+  vibe_radius: 0
   directConnect: 0
   Connected: 0
   Energised: 0

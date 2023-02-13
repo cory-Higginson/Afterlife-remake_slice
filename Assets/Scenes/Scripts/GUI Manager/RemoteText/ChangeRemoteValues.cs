@@ -25,7 +25,7 @@ public class ChangeRemoteValues : MonoBehaviour
         SelectionValue.text = name;
     }
 
-    public void ChangeCostValue(int cost)
+    public void ChangeCostValue(uint cost)
     {
         CostValue.text = "Cost: " + cost.ToString() + " ¢";
     }

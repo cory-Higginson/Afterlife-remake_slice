@@ -218,7 +218,13 @@ public class SelectionHandler : Singleton<SelectionHandler>
     public void changeZoneType(ZoneType zone)
     {
         current_zoning_type = zone;
+        uint cost = 1000; 
         // Update the cost of zone accordingly to the current ZoneType
-        _economyManager.current_cost = zone == ZoneType.None ? 1000 : 2500;
+        if (zone != ZoneType.Generic)
+        {
+            cost = 2500;
+        }
+
+        _economyManager.current_cost = cost; //(zone == ZoneType.None ? 1000 : 2500);
     }
 }

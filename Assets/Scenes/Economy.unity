@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4975863}
-  - component: {fileID: 4975865}
   - component: {fileID: 4975864}
   m_Layer: 0
   m_Name: Entity Manager
@@ -172,20 +171,8 @@ MonoBehaviour:
   soulPrefab: {fileID: 8336109442999174711, guid: 67752238fa7f8ee438e565d6e0e025c6, type: 3}
   ZonedSouls: []
   wanderingSouls: []
+  _remoteValues: {fileID: 752472267}
   timepass: 3
---- !u!114 &4975865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4975862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080f1852f7ef43eb80cc973467d273f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a: {fileID: 0}
 --- !u!1 &22432453
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 1
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &28622491
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 6
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &82680300
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +980,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &102184406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2159,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 5
+  cost: 0
 --- !u!114 &344310594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2305,6 +2298,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 2
+  cost: 0
 --- !u!114 &359163690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2921,6 +2915,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 1
+  cost: 0
 --- !u!114 &446142226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4093,6 +4088,7 @@ MonoBehaviour:
   tempYear: 3
   soulRate: 0
   remotesec: {fileID: 752472264}
+  current_cost: 0
   pennies: 0
   paycheckAmount: 0
   penniesPerSoulAmount: 0
@@ -4312,6 +4308,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 2
+  cost: 0
 --- !u!114 &619787575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4587,6 +4584,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 1
+  cost: 0
 --- !u!114 &695048372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4808,6 +4806,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 1554630427}
   CSString: {fileID: 0}
+  prefabs: {fileID: 1462511246081767095, guid: 03ab02c89a3510e459606735d48e16e3, type: 3}
 --- !u!1 &711802926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,6 +4863,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 3
+  cost: 0
 --- !u!114 &711802929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5242,6 +5242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 3
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &752472264
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,6 +5461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: Road
   zone_type: 0
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &773315805
 GameObject:
   m_ObjectHideFlags: 0
@@ -5717,6 +5721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 5
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &788482663
 GameObject:
   m_ObjectHideFlags: 0
@@ -5976,6 +5982,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &836355833
 GameObject:
   m_ObjectHideFlags: 0
@@ -6100,6 +6107,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 4
+  cost: 0
 --- !u!114 &846872952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6772,6 +6780,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 1
+  cost: 0
 --- !u!1 &951499642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7287,6 +7296,7 @@ MonoBehaviour:
   current_zoning_type: 0
   selection_box: {fileID: 1122595456}
   selected_tiles: []
+  _economyManager: {fileID: 0}
 --- !u!1 &989366291
 GameObject:
   m_ObjectHideFlags: 0
@@ -7818,6 +7828,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1070374229
 GameObject:
   m_ObjectHideFlags: 0
@@ -8398,6 +8409,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1188349368
 GameObject:
   m_ObjectHideFlags: 0
@@ -8537,6 +8549,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1223635451
 GameObject:
   m_ObjectHideFlags: 0
@@ -8638,6 +8651,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 4
+  cost: 0
 --- !u!114 &1239256310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9352,6 +9366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: Zap
   zone_type: 0
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &1377283511
 GameObject:
   m_ObjectHideFlags: 0
@@ -9489,6 +9505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: Track
   zone_type: 0
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &1394003378
 GameObject:
   m_ObjectHideFlags: 0
@@ -9585,6 +9603,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 3
+  cost: 0
 --- !u!114 &1411974840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10086,6 +10105,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 2
+  cost: 0
 --- !u!1 &1463634967
 GameObject:
   m_ObjectHideFlags: 0
@@ -10495,6 +10515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 0
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &1510524924
 GameObject:
   m_ObjectHideFlags: 0
@@ -10714,6 +10736,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 1554630427}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1532673519
 GameObject:
   m_ObjectHideFlags: 0
@@ -11188,6 +11211,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 0}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1669485819
 GameObject:
   m_ObjectHideFlags: 0
@@ -11461,6 +11485,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 4
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &1726787393
 GameObject:
   m_ObjectHideFlags: 0
@@ -12337,6 +12363,7 @@ MonoBehaviour:
   button: {fileID: 0}
   window: {fileID: 0}
   ButtonNumber: 3
+  cost: 0
 --- !u!1 &1831269715
 GameObject:
   m_ObjectHideFlags: 0
@@ -12556,6 +12583,7 @@ MonoBehaviour:
   SelectName: 
   window: {fileID: 551330826}
   CSString: {fileID: 0}
+  prefabs: {fileID: 0}
 --- !u!1 &1846520944
 GameObject:
   m_ObjectHideFlags: 0
@@ -12772,6 +12800,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 7
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!1 &1857206353
 GameObject:
   m_ObjectHideFlags: 0
@@ -14454,6 +14484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectName: 
   zone_type: 2
+  zone_cost: 0
+  _economyManager: {fileID: 0}
 --- !u!222 &372319376684033234
 CanvasRenderer:
   m_ObjectHideFlags: 0

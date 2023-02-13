@@ -13,7 +13,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private float soulRate;
     [SerializeField] private GameObject remotesec;
 
-    public int current_cost;
+    public uint current_cost;
     
     public float TotalPennies
     {
@@ -58,7 +58,7 @@ public class EconomyManager : MonoBehaviour
         remotesec.GetComponent<ChangeRemoteValues>().ChangeMoneyValue(pennies);
     }
 
-    public void updateCost(int amount)
+    public void updateCost(uint amount)
     {
         current_cost = amount;
         remotesec.GetComponent<ChangeRemoteValues>().ChangeCostValue(amount);
@@ -81,7 +81,7 @@ public class EconomyManager : MonoBehaviour
     IEnumerator UpdateSoulRate()
     {
         soulRate = Round(CalculateSoulRate(tempPopulation, tempAmountOfTiles, tempYear), 2);
-        remotesec.GetComponent<ChangeRemoteValues>().ChangeSoulsValue(soulRate);
+        //remotesec.GetComponent<ChangeRemoteValues>().ChangeSoulsValue(soulRate);
         yield return new WaitForSeconds(0.2f);
     }
 }
