@@ -4088,8 +4088,9 @@ MonoBehaviour:
   tempYear: 3
   soulRate: 0
   remotesec: {fileID: 752472264}
+  amount_per_soul: 0
   current_cost: 0
-  pennies: 0
+  pennies: 100000
   paycheckAmount: 0
   penniesPerSoulAmount: 0
 --- !u!1 &582214501
@@ -7278,6 +7279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid_location: {fileID: 327337271525248467, guid: 9e357138e1708734ebccc5d6077fb379, type: 3}
+  grid_location_list: []
+  amount_of_changed_tiles: 0
   grid_x: 10
   grid_y: 10
   center_point: {x: 0, y: 0, z: 0}

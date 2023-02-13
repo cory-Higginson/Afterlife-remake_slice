@@ -22,6 +22,15 @@ public class ChangeRemoteValues : MonoBehaviour
     
     public void ChangeSelection(string name)
     {
+        if (name != "Road")
+        {
+            WorldManager.Instance.GetComponent<SelectionHandler>().placing_transport_paths = false;
+        }
+        else
+        {
+            WorldManager.Instance.GetComponent<SelectionHandler>().placing_transport_paths = true;
+
+        }
         SelectionValue.text = name;
     }
 
@@ -59,4 +68,5 @@ public class ChangeRemoteValues : MonoBehaviour
     {
         PerSoulValue.text = perSoul.ToString() + "¢ per SOUL";
     }
+    
 }
