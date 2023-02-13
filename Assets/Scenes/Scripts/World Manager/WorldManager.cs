@@ -303,7 +303,7 @@ public class WorldManager : Singleton<WorldManager>
     {
         // find how far SOULs need to walk in order to get from the Gate
         // to their sin/reward
-
+        return 0;
     }
 
     public int vibe_check(int index, int plane)
@@ -317,6 +317,6 @@ public class WorldManager : Singleton<WorldManager>
         int radius = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>()
             .vibe_radius;
 
-
+        return 0;
     }
 }

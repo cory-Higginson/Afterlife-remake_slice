@@ -14,8 +14,7 @@ public class SoulManager : MonoBehaviour
 {
     [SerializeField] private int totalSouls;
     [SerializeField] private GameObject soulPrefab;
-    [SerializeField] private List<SOUL> Souls; // all the souls
-    [SerializeField] private List<SOUL> ZonedSouls; // souls have 
+    [SerializeField] private List<SOUL> ZonedSouls; // souls have home
 
     [SerializeField] private List<GameObject> wanderingSouls; // souls that are still finding a "home"
     // DEBUG STATS
@@ -32,9 +31,10 @@ public class SoulManager : MonoBehaviour
     {
         if (soulLocation == SOULLocation.wandering)
         {
-            wanderingSouls.Add(Instantiate(soulPrefab, pos, Quaternion.identity));
+            var soul = Instantiate(soulPrefab, pos, Quaternion.identity);
+            soul.transform.parent = GameObject.Find("Gate(Clone)").transform;
+            wanderingSouls.Add(soul);
             wanderingSouls[wanderingSouls.Count - 1].GetComponent<SOUL>().position = grid;
-            Souls.Add(wanderingSouls[wanderingSouls.Count - 1].GetComponent<SOUL>());
         }
     }
 
@@ -152,9 +152,10 @@ public class SoulManager : MonoBehaviour
                                 
                                 griddata.stored_building.GetComponent<Capacity>().CurrentCapacity++;
                             }
-                            ZonedSouls.Add(soul.GetComponent<SOUL>());
-                            Souls.Add(soul.GetComponent<SOUL>());
                             wanderingSouls.Remove(soul);
+                            ZonedSouls.Add(soul.GetComponent<SOUL>());
+                            //Souls.Add(soul.GetComponent<SOUL>());
+                            
                             continue;
                         }
 //                  }

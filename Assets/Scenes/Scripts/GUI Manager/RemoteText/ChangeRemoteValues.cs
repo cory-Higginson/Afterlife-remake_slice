@@ -17,7 +17,7 @@ public class ChangeRemoteValues : MonoBehaviour
 
     public void ChangeMoneyValue(float money)
     {
-        MoneyValue.text = money.ToString() + " £";
+        MoneyValue.text = money.ToString() + " ¢";
     }
     
     public void ChangeSelection(string name)
@@ -27,13 +27,14 @@ public class ChangeRemoteValues : MonoBehaviour
 
     public void ChangeCostValue(int cost)
     {
-        CostValue.text = "Cost: " + cost.ToString() + " £";
+        CostValue.text = "Cost: " + cost.ToString() + " ¢";
     }
 
     /// <summary>
     /// BOTTOM SECTION
     /// </summary>
-    /// 
+ 
+    
     [SerializeField] private Text SoulsValue;
     [SerializeField] private Text LostValue;
     [SerializeField] private Text EMBOValue;
@@ -56,6 +57,6 @@ public class ChangeRemoteValues : MonoBehaviour
 
     public void ChangePerSoulValue(int perSoul)
     {
-        PerSoulValue.text = perSoul.ToString() + "£ per SOUL";
+        PerSoulValue.text = perSoul.ToString() + "¢ per SOUL";
     }
 }
