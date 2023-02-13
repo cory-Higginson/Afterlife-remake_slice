@@ -8,4 +8,5 @@ public class SOUL : MonoBehaviour
     public string life;
     public Direction direction;
     public Vector2 position;
+    public ZoneType zonetype;
 }
