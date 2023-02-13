@@ -36,7 +36,7 @@ public class WorldManager : Singleton<WorldManager>
                     Vector3 spawn_location = new Vector3(k, i * 5, j);
                     planes[i][j * grid_x + k] = Instantiate(grid_location, spawn_location, Quaternion.identity, this.transform);
                     planes[i][j * grid_x + k].GetComponent<GridLocation>().grid_data =
-                        new GridData(TileType.None, new Vector2(k, j));
+                        new GridData(TileType.None, new Vector2(k, j), i);
                 }
             }
         }
@@ -303,7 +303,7 @@ public class WorldManager : Singleton<WorldManager>
     {
         // find how far SOULs need to walk in order to get from the Gate
         // to their sin/reward
-
+        return 0;
     }
 
     public int vibe_check(int index, int plane)
@@ -312,11 +312,147 @@ public class WorldManager : Singleton<WorldManager>
         return planes[plane][index].GetComponent<GridLocation>().grid_data.vibes;
     }
 
-    public int update_vibe(int plane, int index)
+    public void update_vibe(int plane, int index)
     {
         int radius = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>()
             .vibe_radius;
 
+        int building_vibe = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>().vibes;
 
+        Vector2 start_position = planes[plane][index].GetComponent<GridLocation>().grid_data.position;
+
+        Vector2[] range = new Vector2[] { };
+
+        switch(radius)
+        {
+            case 1:
+                range = new Vector2[]
+        {
+            new Vector2(1, 0), new Vector2(-1, 0),
+            new Vector2(0, 1), new Vector2(0, -1), Vector2.zero
+        };
+                break;
+            case 2:
+                range = new Vector2[]
+        {
+            new Vector2(1, 0), new Vector2(2, 0), new Vector2(-1, 0), new Vector2(-2, 0),
+            new Vector2(0, 1), new Vector2(0, 2), new Vector2(0, -1), new Vector2(0, -2),
+            new Vector2(1, 1), new Vector2(1, -1), new Vector2(-1, 1), new Vector2(-1, -1), Vector2.zero
+        };
+                break;
+            case 3:
+                range = new Vector2[]
+            {
+                new Vector2(1, 0), new Vector2(2, 0), new Vector2(3, 0), // right
+                new Vector2(0, -1), new Vector2(0, -2), new Vector2(0, -3), // back
+                new Vector2(-1, 0), new Vector2(-2, 0), new Vector2(-3, 0), // left
+                new Vector2(0, 1), new Vector2(0, 2), new Vector2(0, 3), // front
+                new Vector2(1, 1), new Vector2(1, 2), new Vector2(2, 1), // top right
+                new Vector2(1, -1), new Vector2(1, -2), new Vector2(2, -1), // bottom right
+                new Vector2(-1, 1), new Vector2(-1, 2), new Vector2(-2, 1), // top left
+                new Vector2(-1, -1), new Vector2(-1, -2), new Vector2(-2, -1), // bottom left
+                Vector2.zero
+            };
+                break;
+            default:
+                range = new Vector2[]
+                {
+                    Vector2.zero
+                };
+                break;
+        }
+
+        foreach (Vector2 tile in range)
+        {
+            Vector2 pos = new Vector2(start_position.x + tile.x, start_position.y + tile.y);
+
+            if (!withinRange(pos))
+            {
+                continue;
+            }
+
+            int tile_index = getIndex(pos);
+
+            planes[plane][tile_index].GetComponent<GridLocation>().grid_data.vibes += building_vibe;
+        }
+    }
+
+    public int adjacencyScoreHell(GameObject tile)
+    {
+        Vector2 start_pos = tile.GetComponent<GridLocation>().grid_data.position;
+        int plane = tile.GetComponent<GridLocation>().grid_data.plane;
+
+        int adjacency = 0;
+
+        Vector2[] directions = new Vector2[]
+            {
+                new Vector2(1, 0), new Vector2(-1, 0),
+                new Vector2(0, 1), new Vector2(0, -1),
+                new Vector2(1, 1), new Vector2(1, -1),
+                new Vector2(-1, 1), new Vector2(-1, -1)
+            };
+
+        foreach (Vector2 pos in directions)
+        {
+            Vector2 new_pos = new Vector2(start_pos.x + pos.x, start_pos.y + pos.y);
+
+            if (!withinRange(new_pos)) continue;
+
+            int index = getIndex(new_pos);
+
+            if (planes[plane][index].GetComponent<GridLocation>().grid_data.tile_type == TileType.Zone)
+            {
+                if (planes[plane][index].GetComponent<GridLocation>().grid_data.zone_type == tile.GetComponent<GridLocation>().grid_data.zone_type)
+                {
+                    adjacency += 3;
+                }
+            }
+        }
+
+        adjacency /= 2 * (1 + 1);
+
+        return adjacency;
+    }
+
+    public int adjacencyScoreHeaven(GameObject tile)
+    {
+        Vector2 start_pos = tile.GetComponent<GridLocation>().grid_data.position;
+        int plane = tile.GetComponent<GridLocation>().grid_data.plane;
+
+        int adjacency = 0;
+
+        Vector2[] directions = new Vector2[]
+            {
+                new Vector2(1, 0), new Vector2(-1, 0),
+                new Vector2(0, 1), new Vector2(0, -1),
+                new Vector2(1, 1), new Vector2(1, -1),
+                new Vector2(-1, 1), new Vector2(-1, -1)
+            };
+
+        foreach (Vector2 pos in directions)
+        {
+            Vector2 new_pos = new Vector2(start_pos.x + pos.x, start_pos.y + pos.y);
+
+            if (!withinRange(new_pos)) continue;
+
+            int index = getIndex(new_pos);
+
+            if (planes[plane][index].GetComponent<GridLocation>().grid_data.tile_type == TileType.Zone)
+            {
+                if (planes[plane][index].GetComponent<GridLocation>().grid_data.zone_type == tile.GetComponent<GridLocation>().grid_data.zone_type)
+                {
+                    adjacency += 1;
+                }
+                if (planes[plane][index].GetComponent<GridLocation>().grid_data.zone_type != tile.GetComponent<GridLocation>().grid_data.zone_type &&
+                    planes[plane][index].GetComponent<GridLocation>().grid_data.zone_type == ZoneType.None)
+                {
+                    adjacency += 3;
+                }
+            }
+        }
+
+        adjacency /= 2 * (1 + 1);
+
+        return adjacency;
     }
 }
