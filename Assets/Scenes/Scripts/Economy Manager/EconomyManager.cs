@@ -68,6 +68,7 @@ public class EconomyManager : MonoBehaviour
     {
         current_cost = amount;
         remotesec.GetComponent<ChangeRemoteValues>().ChangeCostValue(amount);
+        Debug.Log(amount);
     }
     
     // Round to 2 decimal places

@@ -225,7 +225,10 @@ public class SelectionHandler : Singleton<SelectionHandler>
         {
             cost = 2500;
         }
+        
+        
+        _economyManager.updateCost(cost);
 
-        _economyManager.current_cost = cost; //(zone == ZoneType.None ? 1000 : 2500);
+        //_economyManager.current_cost = cost; //(zone == ZoneType.None ? 1000 : 2500);
     }
 }
