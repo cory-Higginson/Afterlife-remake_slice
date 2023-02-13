@@ -18,8 +18,13 @@ public class SelectionHandler : Singleton<SelectionHandler>
     public RectTransform selection_box;
     public List<GridLocation> selected_tiles = new List<GridLocation>();
     
+    // Economy
+    [SerializeField]private EconomyManager _economyManager;
+
     private void Start()
     {
+        _economyManager = FindObjectOfType<EconomyManager>();
+        
         InputManager.Instance.my_input_actions.AfterLifeActions.LeftMouse.started += startZoning;
         InputManager.Instance.my_input_actions.AfterLifeActions.LeftMouse.canceled += finishZoning;
         InputManager.Instance.my_input_actions.AfterLifeActions.BlueZoning.started += changeZoning;
@@ -165,7 +170,9 @@ public class SelectionHandler : Singleton<SelectionHandler>
         foreach (var tile in selected_tiles)
         {
             tile.grid_data.tile_type = TileType.Zone;
-            tile.grid_data.zone_type = current_zoning_type;
+            tile.grid_data.zone_type = current_zoning_type; 
+            // Remove the cost of each tile placed.
+            _economyManager.RemovePennies(_economyManager.current_cost);
         }
         // do something to selection.
     }
@@ -209,5 +216,7 @@ public class SelectionHandler : Singleton<SelectionHandler>
     public void changeZoneType(ZoneType zone)
     {
         current_zoning_type = zone;
+        // Update the cost of zone accordingly to the current ZoneType
+        _economyManager.current_cost = zone == ZoneType.None ? 1000 : 2500;
     }
 }
