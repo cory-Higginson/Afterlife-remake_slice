@@ -169,6 +169,8 @@ public class SelectionHandler : Singleton<SelectionHandler>
 
         foreach (var tile in selected_tiles)
         {
+            if (tile.grid_data.stored_building)  { continue; }
+
             tile.grid_data.tile_type = TileType.Zone;
             tile.grid_data.zone_type = current_zoning_type; 
             // Remove the cost of each tile placed.

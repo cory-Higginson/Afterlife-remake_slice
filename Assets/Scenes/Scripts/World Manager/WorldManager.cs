@@ -12,7 +12,7 @@ public class WorldManager : Singleton<WorldManager>
     public int grid_x;
     public int grid_y;
 
-    private GameObject [][] planes = new GameObject[num_of_planes][];
+    public GameObject [][] planes = new GameObject[num_of_planes][];
 
     public Vector3 center_point;
 
@@ -118,12 +118,12 @@ public class WorldManager : Singleton<WorldManager>
         return ref planes;
     }
     
-    private int getIndex(Vector2 position)
+    public int getIndex(Vector2 position)
     {
         return (int)position.x + (int)position.y * grid_x;
     }
 
-    private bool withinRange(Vector2 position)
+    public bool withinRange(Vector2 position)
     {
         if (position.x > grid_x - 1 || position.x < 0 ||
             position.y > grid_y - 1 || position.y < 0) return false;
@@ -297,5 +297,26 @@ public class WorldManager : Singleton<WorldManager>
                 planes[plane][getIndex(current)].GetComponent<GridLocation>().grid_data.connected = true;
             }
         }
+    }
+
+    public int soulWalkingDistance(GameObject gate, GameObject zone_building, int plane)
+    {
+        // find how far SOULs need to walk in order to get from the Gate
+        // to their sin/reward
+        return 0;
+    }
+
+    public int vibe_check(int index, int plane)
+    {
+        // Get the current vibe of a tile
+        return planes[plane][index].GetComponent<GridLocation>().grid_data.vibes;
+    }
+
+    public int update_vibe(int plane, int index)
+    {
+        int radius = planes[plane][index].GetComponent<GridLocation>().grid_data.stored_building.GetComponent<Stats>()
+            .vibe_radius;
+
+        return 0;
     }
 }
