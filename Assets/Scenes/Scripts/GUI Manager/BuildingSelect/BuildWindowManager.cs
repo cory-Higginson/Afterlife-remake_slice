@@ -51,10 +51,10 @@ public class BuildWindowManager : MonoBehaviour
 
         if (buttons.Length >= 5)
         {
-            buttons[4].GetComponentInChildren<Text>().text = five;
+            buttons[4].GetComponentInChildren<Text>().text = "Kingdom Class";
             buttons[4].GetComponent<BuildingWindowButton>().cost = costFive;
         }
-        
+
 
         window.transform.position = position.position;
     }

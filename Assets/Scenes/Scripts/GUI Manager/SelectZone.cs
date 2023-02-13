@@ -40,6 +40,7 @@ public class SelectZone : MonoBehaviour
     {
         CSString.ChangeSelection(SelectName);
         SelectionHandler.Instance.current_zoning_type = zone_type;
-        _economyManager.updateCost(zone_cost);
+        SelectionHandler.Instance.changeZoneType(zone_type);
+        //_economyManager.updateCost(zone_cost);
     }
 }
