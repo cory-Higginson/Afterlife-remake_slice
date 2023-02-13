@@ -10,12 +10,14 @@ public class GridData
     public GameObject stored_building;
     public Vector2 position = new Vector2(0, 0);
     public List<Direction> connected_directions;
-    public bool connected = false;
+    public bool connected;
+    public int plane;
     public int vibes = 0;
 
-    public GridData(TileType _tile_type, Vector2 _position)
+    public GridData(TileType _tile_type, Vector2 _position, int _plane)
     {
         tile_type = _tile_type;
         position = _position;
+        plane = _plane;
     }
 }

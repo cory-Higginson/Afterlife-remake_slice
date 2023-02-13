@@ -7278,8 +7278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid_location: {fileID: 327337271525248467, guid: 9e357138e1708734ebccc5d6077fb379, type: 3}
-  grid_x: 6
-  grid_y: 6
+  grid_x: 10
+  grid_y: 10
   center_point: {x: 0, y: 0, z: 0}
 --- !u!114 &970159193
 MonoBehaviour:
@@ -7294,6 +7294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_zoning_type: 0
+  placing_transport_paths: 1
   selection_box: {fileID: 1122595456}
   selected_tiles: []
   _economyManager: {fileID: 0}
