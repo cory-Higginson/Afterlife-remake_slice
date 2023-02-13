@@ -105,7 +105,7 @@ public class GridLocation : MonoBehaviour
                     grid_data.connected_directions = WorldManager.Instance.check_cardinal(grid_data.stored_building, TileType.Road, 0);
                     if (grid_data.connected_directions.Count > 0)
                     {
-                        grid_data.stored_building.GetComponent<GateScript>().connected = true;
+                        //grid_data.stored_building.GetComponent<GateScript>().connected = true;
                     }
                     break;
                 default:

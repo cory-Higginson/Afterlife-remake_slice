@@ -110,7 +110,7 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void ZoomView(float zoom_step)
+    public void ZoomView(float zoom_step)
     {
         if (zoom_step != 0)
         {

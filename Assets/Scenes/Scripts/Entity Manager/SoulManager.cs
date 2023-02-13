@@ -42,7 +42,7 @@ public class SoulManager : MonoBehaviour
             wanderingSouls.Add(soul);
             wanderingSouls[wanderingSouls.Count - 1].GetComponent<SOUL>().position = grid;
             
-            _remoteValues.ChangeSoulsValue(wanderingSouls.Count);
+            _remoteValues.ChangeSoulsValue(totalSouls);
         }
     }
 
@@ -131,16 +131,16 @@ public class SoulManager : MonoBehaviour
                         loc.x--;
                         break;
                 }
-                print("run");
+                //print("run");
                 if (WorldManager.Instance.withinRange(loc))
                 {
-                    print("rin");
+                    //print("rin");
                     var griddata = WorldManager.Instance.planes[0][WorldManager.Instance.getIndex(loc)]
                         .GetComponent<GridLocation>().grid_data;
 
 //                  if (griddata.zone_type == soul_desire) ;
 //                  {
-                        print("test");
+                        //print("test");
                         if (griddata.stored_building.GetComponent<Capacity>()
                                 .MaximumCapacity != griddata.stored_building.GetComponent<Capacity>().CurrentCapacity) ;
                         {
@@ -162,8 +162,8 @@ public class SoulManager : MonoBehaviour
                             }
                             wanderingSouls.Remove(soul);
                             ZonedSouls.Add(soul.GetComponent<SOUL>());
-                            //Souls.Add(soul.GetComponent<SOUL>());
                             
+                            //Souls.Add(soul.GetComponent<SOUL>());
                             continue;
                         }
 //                  }

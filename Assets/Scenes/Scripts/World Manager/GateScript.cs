@@ -7,7 +7,7 @@ public class GateScript : MonoBehaviour
 {
     public GameObject Entityman;
 
-    public bool connected = false;
+    //public bool connected = true;
     private float timer = 0;
     private float max_timer = 3;
 
@@ -20,10 +20,10 @@ public class GateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (connected)
-        {
+        //if (connected)
+        //{
             timer += Time.deltaTime;
-        }
+        //}
 
         if (timer >= max_timer)
         {

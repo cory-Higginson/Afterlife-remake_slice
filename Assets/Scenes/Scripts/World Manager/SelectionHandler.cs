@@ -239,6 +239,7 @@ public class SelectionHandler : Singleton<SelectionHandler>
             {
                 tile.grid_data.tile_type = TileType.Zone;
                 tile.grid_data.zone_type = current_zoning_type;
+                _economyManager.RemovePennies(_economyManager.current_cost);
             }
         }
         else
@@ -247,6 +248,7 @@ public class SelectionHandler : Singleton<SelectionHandler>
             {
                 tile.grid_data.tile_type = TileType.Road;
                 WorldManager.Instance.setConnected(tile.gameObject, tile.grid_data.plane);
+                _economyManager.RemovePennies(_economyManager.current_cost);
             }
         }
     }

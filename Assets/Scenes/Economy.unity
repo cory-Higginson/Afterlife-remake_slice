@@ -2749,6 +2749,7 @@ GameObject:
   - component: {fileID: 442980655}
   - component: {fileID: 442980654}
   - component: {fileID: 442980653}
+  - component: {fileID: 442980656}
   m_Layer: 5
   m_Name: ZoomInButton
   m_TagString: Untagged
@@ -2859,6 +2860,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442980651}
   m_CullTransparentMesh: 1
+--- !u!114 &442980656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442980651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9485391287f034f897d2502eb369ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomIn: 1
 --- !u!1 &446142223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4103,7 @@ MonoBehaviour:
   soulRate: 0
   remotesec: {fileID: 752472264}
   amount_per_soul: 0
+  time: 0
   current_cost: 0
   pennies: 10000
   paycheckAmount: 0
@@ -7123,6 +7138,7 @@ GameObject:
   - component: {fileID: 969838474}
   - component: {fileID: 969838473}
   - component: {fileID: 969838472}
+  - component: {fileID: 969838475}
   m_Layer: 5
   m_Name: ZoomOutButton
   m_TagString: Untagged
@@ -7233,6 +7249,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969838470}
   m_CullTransparentMesh: 1
+--- !u!114 &969838475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969838470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9485391287f034f897d2502eb369ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomIn: 0
 --- !u!1 &970159190
 GameObject:
   m_ObjectHideFlags: 0
@@ -11281,6 +11310,7 @@ GameObject:
   - component: {fileID: 1671152874}
   - component: {fileID: 1671152876}
   - component: {fileID: 1671152875}
+  - component: {fileID: 1671152877}
   m_Layer: 5
   m_Name: PlanetCameraSection
   m_TagString: Untagged
@@ -11353,6 +11383,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671152873}
   m_CullTransparentMesh: 1
+--- !u!114 &1671152877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671152873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9485391287f034f897d2502eb369ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomIn: 0
 --- !u!1 &1697689988
 GameObject:
   m_ObjectHideFlags: 0

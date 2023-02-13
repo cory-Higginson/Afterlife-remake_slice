@@ -14,6 +14,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private float soulRate;
     [SerializeField] private GameObject remotesec;
     public float amount_per_soul;
+    [SerializeField]private float time;
 
     private SoulManager _soulManager;
     private WorldManager _worldManager;
@@ -80,6 +81,13 @@ public class EconomyManager : MonoBehaviour
     private void Update()
     {
         StartCoroutine(UpdateSoulRate());
+        time += Time.deltaTime;
+        if (time >= 3)
+        {
+            tempYear++;
+            remotesec.GetComponent<ChangeRemoteValues>().ChangeYearValue(tempYear);
+            time = 0;
+        }
         //AddPennies(1.0f);
     }
 
