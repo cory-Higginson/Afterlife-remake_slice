@@ -36,7 +36,7 @@ public class WorldManager : Singleton<WorldManager>
                     Vector3 spawn_location = new Vector3(k, i * 5, j);
                     planes[i][j * grid_x + k] = Instantiate(grid_location, spawn_location, Quaternion.identity, this.transform);
                     planes[i][j * grid_x + k].GetComponent<GridLocation>().grid_data =
-                        new GridData(TileType.None, new Vector2(k, j));
+                        new GridData(TileType.None, new Vector2(k, j), i);
                 }
             }
         }
@@ -130,61 +130,89 @@ public class WorldManager : Singleton<WorldManager>
         return true;
     }
 
-    private bool pathfinding(GameObject gate, GameObject building, int plane)
+    /*
+    public List<GridLocation> pathfinding(GridLocation start, GridLocation end, int plane)
     {
-        Vector2 start = gate.GetComponent<GridLocation>().grid_data.position;
+        Vector2 start_point = start.grid_data.position;
 
-        Vector2 end = building.GetComponent<GridLocation>().grid_data.position;
+        Vector2 end_point = end.grid_data.position;
 
-        if (start == end) { return true; }
-        //Debug.Log("Astar " + AStar(start, end, plane));
-        return AStar(start, end, plane);
+        if (start == end) { return null; }
+        
+        List<Vector2> path = AStar(start_point, end_point, plane);
+        List<GridLocation> tile_path = new List<GridLocation>();
+
+        foreach (var point in path)
+        {
+            tile_path.Add(planes[plane][getIndex(point)].GetComponent<GridLocation>());
+        }
+
+        return tile_path;
     }
 
-    private bool AStar(Vector2 start, Vector2 end, int plane)
+    /*
+    private List<Vector2> AStar(Vector2 start, Vector2 end, int plane)
     {
-        List<Vector2> closed_list = new List<Vector2>();
-
-        Queue<Vector2> open_list = new Queue<Vector2>();
+        Dictionary<Vector2, Vector2> closed_list = new Dictionary<Vector2, Vector2>();
+        
+        PriorityQueue<string, int> queue = new PriorityQueue<string, int>();
+        PriorityQueue<Vector2, Vector2> open_list = new Queue<Vector2>();
+        Dictionary<Vector2, int> costs_so_far = new Dictionary<Vector2, int>();
+        costs_so_far[start] = 0;
+        
         open_list.Enqueue(start);
+        closed_list.Add(start, start);
 
         while (open_list.Count > 0)
         {
             Vector2 current = open_list.Dequeue();
-            if (current == end) { return true; }
+            if (current == end)
+            {
+                break;
+            }
 
             foreach (Vector2 neighbour in getNeighbours(current, end, plane))
             {
-                if (closed_list.Contains(current)) { continue; }
+                int step_cost = costs_so_far[current] + 1;
+                
+                if (closed_list.Contains(current)) { continue;}
 
-                if (neighbour == end) { return true; }
+                if (neighbour == end)
+                {
+                    costs_so_far[neighbour] = step_cost;
+                    int priority = 
+                    closed_list.Add(neighbour);
+                    return closed_list;
+                }
 
                 open_list.Enqueue(neighbour);
             }
+            
             closed_list.Add(current);
         }
 
-        if (closed_list.Contains(end)) { return true; }
+        if (closed_list.Contains(end)) { return closed_list; }
 
-        return false;
+        return null;
 
     }
-
+    */
+/*
     private List<Vector2> getNeighbours(Vector2 start, Vector2 end, int plane)
     {
         Debug.Log("checking_for_neighbours");
         List<Vector2> neighbours = new List<Vector2>();
 
-        Vector2 [] directions = new Vector2[8]
+        Vector2 [] directions = new Vector2[4]
         {
             new Vector2(1, 0),
             new Vector2(-1, 0),
             new Vector2(0, 1),
-            new Vector2(0, -1),
-            new Vector2(1, 1),
-            new Vector2(1, -1),
-            new Vector2(-1, 1),
-            new Vector2(-1, -1)
+            new Vector2(0, -1)
+            //new Vector2(1, 1),
+            //new Vector2(1, -1),
+            //new Vector2(-1, 1),
+            //new Vector2(-1, -1)
         };
 
         foreach (Vector2 dir in directions)
@@ -195,22 +223,23 @@ public class WorldManager : Singleton<WorldManager>
             int tile_index = getIndex(current);
 
             if (current == end)
-            { neighbours.Clear(); Debug.Log("OVER " + current); neighbours.Add(current); return neighbours; }
+            {
+                neighbours.Clear();
+                neighbours.Add(current); 
+                return neighbours;
+            }
 
+            /*
             if (planes[plane][tile_index].GetComponent<GridLocation>().grid_data.tile_type 
                 != TileType.Road) continue;
+                
+            
             neighbours.Add(current);
-        }
-        Debug.Log(neighbours);
-        Debug.Log(neighbours[0]);
-        foreach (Vector2 neighbour in neighbours)
-        { 
-
-            Debug.Log("AFTER " + neighbour);
         }
 
         return neighbours;
     }
+    */
 
     public List<Direction> check_cardinal(GameObject obj, TileType checking_for, int plane)
     {
@@ -299,3 +328,5 @@ public class WorldManager : Singleton<WorldManager>
         }
     }
 }
+
+

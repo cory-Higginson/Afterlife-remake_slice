@@ -1,19 +1,26 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using UnityEngine.Animations;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class SelectionHandler : Singleton<SelectionHandler>
 {
     private GameObject[][] tiles;
     
     private bool zoning;
-    public ZoneType current_zoning_type = ZoneType.Blue;
+    public ZoneType current_zoning_type = ZoneType.None;
+    public bool placing_transport_paths = true;
     private Vector3 selection_start;
     private Vector3 selection_end;
+    private GridLocation start_tile;
+    private GridLocation end_tile;
     private float ray_cast_timer = 0;
+    private Vector2 transport_start_end_delta;
     
     public RectTransform selection_box;
     public List<GridLocation> selected_tiles = new List<GridLocation>();
@@ -38,10 +45,58 @@ public class SelectionHandler : Singleton<SelectionHandler>
     {
         ray_cast_timer += Time.deltaTime;
 
-        if (ray_cast_timer >= 0.5f)
+        if (ray_cast_timer >= 0.05f)
         {
-            updateGridSelection();
+            ray_cast_timer = 0;
+            
+            if (!placing_transport_paths)
+            {
+                updateGridSelection();
+            }
+            else
+            {
+                updateTransportPathSelection();
+            }
         }
+    }
+
+    private void updateTransportPathSelection()
+    {
+        if (zoning)
+        {
+            RaycastHit hit = castMouseRayForTiles();
+
+            if (!hit.transform.IsUnityNull())
+            {
+                end_tile = hit.transform.gameObject.GetComponent<GridLocation>();
+                updateSelectedPath();
+            }
+        }
+    }
+
+    private void updateSelectedPath()
+    {
+        /*
+        transport_start_end_delta = new Vector2(end_tile.grid_data.position.x - start_tile.grid_data.position.x,
+            end_tile.grid_data.position.y - start_tile.grid_data.position.y);
+        
+        int big = Convert.ToInt32(Math.Abs(transport_start_end_delta.x) > Math.Abs(transport_start_end_delta.y)
+            ? transport_start_end_delta.x
+            : transport_start_end_delta.y);
+
+        int small = Convert.ToInt32(big != Convert.ToInt32(transport_start_end_delta.x)
+            ? transport_start_end_delta.x
+            : transport_start_end_delta.y);
+
+        while (big != small)
+        {
+            int step = (big < 0 ? -1 : 1);
+            
+            
+        }
+        */
+
+
     }
 
     private void updateGridSelection()
@@ -142,17 +197,27 @@ public class SelectionHandler : Singleton<SelectionHandler>
 
     private void startZoning(InputAction.CallbackContext context)
     {
-        if (current_zoning_type != ZoneType.None)
+        RaycastHit hit = castMouseRayForTiles();
+        
+        if (!placing_transport_paths && current_zoning_type != ZoneType.None)
         {
             zoning = true;
-
-            RaycastHit hit = castMouseRayForTiles();
             if (!hit.transform.IsUnityNull())
             {
                 selection_start = hit.point;
                 selection_box.position = hit.point;
                 selection_box.sizeDelta = Vector2.zero;
                 selection_box.anchoredPosition3D = selection_start;
+            }
+        }
+        else if (placing_transport_paths)
+        {
+            zoning = true;
+            if (!hit.transform.IsUnityNull())
+            {
+                selected_tiles.Clear();
+                start_tile = hit.transform.gameObject.GetComponent<GridLocation>();
+                selected_tiles.Add(start_tile);
             }
         }
     }
@@ -162,12 +227,22 @@ public class SelectionHandler : Singleton<SelectionHandler>
         zoning = false;
         selection_box.sizeDelta = Vector2.zero;
 
-        foreach (var tile in selected_tiles)
+        if (!placing_transport_paths)
         {
-            tile.grid_data.tile_type = TileType.Zone;
-            tile.grid_data.zone_type = current_zoning_type;
+            foreach (var tile in selected_tiles)
+            {
+                tile.grid_data.tile_type = TileType.Zone;
+                tile.grid_data.zone_type = current_zoning_type;
+            }
         }
-        // do something to selection.
+        else
+        {
+            foreach (var tile in selected_tiles)
+            {
+                tile.grid_data.tile_type = TileType.Road;
+                WorldManager.Instance.setConnected(tile.gameObject, tile.grid_data.plane);
+            }
+        }
     }
 
     public void changeZoning(InputAction.CallbackContext context)
