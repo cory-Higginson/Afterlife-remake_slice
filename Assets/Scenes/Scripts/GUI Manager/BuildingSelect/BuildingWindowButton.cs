@@ -11,6 +11,7 @@ public class BuildingWindowButton : MonoBehaviour, IPointerEnterHandler
     [SerializeField] public int ButtonNumber;
     [SerializeField] public uint cost;
     private ChangeRemoteValues _remoteValues;
+    private EconomyManager _economyManager;
     
     // Start is called before the first frame update
     private void Awake()
@@ -26,6 +27,7 @@ public class BuildingWindowButton : MonoBehaviour, IPointerEnterHandler
         }
 
         _remoteValues = FindObjectOfType<ChangeRemoteValues>();
+        _economyManager = FindObjectOfType<EconomyManager>();
         
         button.onClick.AddListener(TaskOnClick);
     }
@@ -35,6 +37,8 @@ public class BuildingWindowButton : MonoBehaviour, IPointerEnterHandler
         window.SwitchSelect();
         GetComponentInChildren<Image>().color = Color.cyan;
         _remoteValues.ChangeCostValue(cost);
+        _economyManager.updateCost(cost);
+        
     }
 
     void TaskOnClick()
